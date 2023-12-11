@@ -1,0 +1,41 @@
+/* HEADER */
+/* Couleur des liens */
+.navbar-nav .nav-link, .link, .toggle {
+  color: #D92332;
+}
+
+/* Bordure sous la Navbar */
+.navbar  {
+  border-bottom: 1px solid #262526;
+}
+
+/* Lien actif souligné */
+.navbar-nav .nav-link.active {
+  color: #D92332;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Couleur du bouton Se connecter */
+.btn {
+  background-color: #262526;
+  color: white;
+  margin-right: 0;
+  border: none;
+}
+
+/* Opacité à 70% lors du survol */
+.btn:hover {
+  background-color: rgba(38, 37, 38, 0.7);
+}
+
+/* FOOTER */
+/* Couleurs et position */
+.footer {
+  background-color: #262526;
+  color: white;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
