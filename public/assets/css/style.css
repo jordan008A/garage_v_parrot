@@ -41,19 +41,19 @@
 
 
 /* REVIEW FORM */
-#myForm {
+#reviewForm {
   background-color: #D92332;
   color: #ffffff;
   border-radius: 32px;
   padding: 20px;
 }
 
-#myForm input::placeholder, #myForm input, #myForm textarea::placeholder, #myForm textarea, #myForm select {
+#reviewForm input::placeholder, #reviewForm input, #reviewForm textarea::placeholder, #reviewForm textarea, #reviewForm select {
   color: #D92332;
   font: italic large sans-serif;
 }
 
-#myForm input {
+#reviewForm input {
   overflow-wrap: break-word;
 }
 
@@ -193,6 +193,33 @@
   }
 }
 
+/* LOGIN FORM */
+#loginForm {
+  width: calc(100% - 100px);
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #262526; 
+  box-shadow: 4px 4px 10px #262526;
+}
+
+#loginForm input::placeholder, #loginForm input {
+  color: #262526;
+  font: italic large sans-serif;
+}
+
+.button-t {
+  background-color: #D94350; 
+  color: white; 
+  box-shadow: 4px 4px 12px #D94350;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.button-t:hover {
+  background-color: #D92332;
+  color: #ffffff;
+  box-shadow: 6px 6px 16px #D92332;
+}
 
 /* FOOTER */
 /* Couleurs et position */
