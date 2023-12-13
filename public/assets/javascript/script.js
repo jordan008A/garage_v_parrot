@@ -1,3 +1,4 @@
+// IIFE for map
 (function () {
   let setting = {
     "query": "1 Allée Gabriel Biénès, Toulouse, France",
@@ -24,3 +25,42 @@
   let to = d.getElementsByTagName('script')[0];
   to.parentNode.insertBefore(s, to);
 })();
+
+document.addEventListener('DOMContentLoaded', function () {
+// Save the value of the rating and managing the .active class
+  const stars = document.querySelectorAll('.rating .star');
+  const ratingValue = document.getElementById('ratingValue');
+
+  stars.forEach(star => {
+    star.addEventListener('click', function () {
+      const rating = this.getAttribute('data-rating');
+      ratingValue.value = rating;
+
+      stars.forEach(s => {
+        const sRating = s.getAttribute('data-rating');
+        s.classList.remove('active');
+        if (sRating <= rating) {
+          s.classList.add('active');
+        }
+      });
+    });
+  });
+
+// Maximum character limit for the comment textarea
+  const commentTextArea = document.getElementById('area');
+  const lengthValue = document.getElementById('lengthValue');
+  
+  commentTextArea.addEventListener('input', function() {
+    const textLength = this.value.length;
+    lengthValue.textContent = textLength + ' / 175 caractères';
+    
+    if (textLength > 175) {
+      this.value = this.value.substring(0, 175);
+      lengthValue.textContent = '175 / 175 caractères';
+    }
+  });
+});
+
+
+
+
