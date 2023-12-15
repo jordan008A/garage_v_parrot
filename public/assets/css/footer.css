@@ -1,0 +1,28 @@
+/* FOOTER */
+/* Couleurs et position */
+#footer {
+  background-color: #262526;
+  color: #ffffff;
+  padding: 20px;
+  margin-top: 100px;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0;
+}
+
+@media screen and (max-width: 576px) {
+  #footer {
+    margin-top: 40px;
+  }
+  #schedules h4 {
+    font-size: 20px;
+  }
+
+  #schedules p {
+    font-size: 12px;
+  }
+
+  #footer .link, #footer .copyright {
+    font-size: 12px;
+  }
+}

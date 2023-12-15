@@ -26,8 +26,8 @@
   to.parentNode.insertBefore(s, to);
 })();
 
-document.addEventListener('DOMContentLoaded', function () {
 // Save the value of the rating and managing the .active class
+document.addEventListener('DOMContentLoaded', function () {
   const stars = document.querySelectorAll('.rating .star');
   const ratingValue = document.getElementById('ratingValue');
 
@@ -45,22 +45,95 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+});
 
-// Maximum character limit for the comment textarea
-  const commentTextArea = document.getElementById('area');
-  const lengthValue = document.getElementById('lengthValue');
+// Maximum character limit for the comment textarea on form review
+  const commentTextAreaReview = document.getElementById('areaReview');
+  const lengthValueReview = document.getElementById('lengthValueReview');
   
-  commentTextArea.addEventListener('input', function() {
-    const textLength = this.value.length;
-    lengthValue.textContent = textLength + ' / 175 caractères';
+  commentTextAreaReview.addEventListener('input', function() {
+    const textLengthReview = this.value.length;
+    lengthValueReview.textContent = textLengthReview + ' / 175 caractères';
     
-    if (textLength > 175) {
+    if (textLengthReview > 175) {
       this.value = this.value.substring(0, 175);
-      lengthValue.textContent = '175 / 175 caractères';
+      lengthValueReview.textContent = '175 / 175 caractères';
     }
   });
+
+// Update height according to width
+function updateImageHeight() {
+  const images = document.querySelectorAll('.dynamic-height');
+
+  images.forEach(function(image) {
+      image.style.height = (image.offsetWidth * 0.7) + 'px';
+  });
+}
+
+
+// Update the height on initial load and upon window resizing
+window.addEventListener('load', updateImageHeight);
+window.addEventListener('resize', updateImageHeight);
+
+function updateDivHeight() {
+  const customCarDivs = document.querySelectorAll('.carousel-item');
+
+  customCarDivs.forEach(function(div) {
+    const isActive = div.classList.contains('height-70');
+
+    if (isActive) {
+      const customCarDiv = div.querySelector('.custom-car-carousel');
+      const width = customCarDiv.offsetWidth;
+      const height = width * 0.7;
+
+      customCarDiv.style.height = height + 'px';
+    }
+  });
+}
+
+// Increase the height when changing slides
+document.addEventListener('DOMContentLoaded', function() {
+  const myCarousel = document.getElementById('carouselExampleControls');
+  myCarousel.addEventListener('slid.bs.carousel', function() {
+    updateDivHeight();
+  });
+});
+
+// Update the height on initial load and upon window resizing
+window.addEventListener('load', function() {
+  updateDivHeight();
+});
+
+window.addEventListener('resize', function() {
+  updateDivHeight();
 });
 
 
 
+// Maximum character limit for the comment textarea on form contact
+document.addEventListener('DOMContentLoaded', function () {
+    const commentTextAreaContact = document.getElementById('areaContact');
+    const lengthValueContact = document.getElementById('lengthValueContact');
+    
+    commentTextAreaContact.addEventListener('input', function() {
+      const textLengthContact = this.value.length;
+      lengthValueContact.textContent = textLengthContact + ' / 255 caractères';
+      
+      if (textLengthContact > 255) {
+        this.value = this.value.substring(0, 255);
+        lengthValueContact.textContent = '255 / 255 caractères';
+      }
+    });
+});
 
+// Script pour basculer l'affichage des filtres
+const toggleFiltersBtn = document.getElementById('toggleFiltersBtn');
+const filters = document.getElementById('filters');
+
+toggleFiltersBtn.addEventListener('click', function() {
+  if (filters.style.display === 'none' || filters.style.display === '') {
+    filters.style.display = 'flex';
+  } else {
+    filters.style.display = 'none';
+  }
+});

@@ -1,0 +1,40 @@
+/* HEADER */
+.navbar {
+  border-bottom: 1px solid #262526;
+  padding: 20px 0px;
+  margin: 0px 30px;
+}
+
+#logo {
+ width: 157px;
+ height: 60px;
+}
+
+.navbar-nav .nav-link.active {
+  color: #D92332;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.toggle {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    margin: 0px 10px 0px 20px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 20px !important;
+  }
+
+  #logo {
+    width: 105px;
+    height: 40px;
+   }
+
+   .toggle {
+    font-size: 20px;
+  }
+}

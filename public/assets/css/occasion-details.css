@@ -1,0 +1,96 @@
+/*CAR CAROUSEL */
+.custom-car-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 120px;
+  margin-right: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 4px 4px 8px rgba(15, 15, 15, 0.5);
+}
+
+.custom-car-carousel img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.button-c {
+  background-color: #D94350;
+  color: #D94350;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  width: 40px;
+}
+
+.button-c:hover {
+  background-color: #D92332;
+  color: #D92332;
+}
+
+.car-title {
+  color: #262526;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.car-text {
+  color: #262526;
+  font-size: 20px;
+}
+
+.car-price {
+  color: #D92332;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+  .button-c {
+    height: 30px;
+    width: 30px;
+  }
+
+  .car-title {
+    font-size: 24px;
+  }
+
+  .car-text {
+    font-size: 16px;
+  }
+
+  .car-price {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .button-c {
+    height: 20px;
+    width: 20px;
+  }
+
+  .custom-car-carousel {
+    margin-left: 55px;
+    margin-right: 55px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  
+  .car-title {
+    font-size: 16px;
+  }
+  
+  .car-text {
+    font-size: 12px;
+  }
+  
+  .car-price {
+    font-size: 14px;
+  }
+}

@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class OccasionsController extends AbstractController
 {
-    #[Route('/', name: 'home.index', methods: ['GET'] )]
+    #[Route('/occasions', name: 'occasions.index', methods: ['GET'] )]
     public function index(): Response
     {
-        return $this->render('pages/home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('pages/occasions/details.html.twig', [
+            'controller_name' => 'OccasionsController',
         ]);
     }
 }

@@ -1,8 +1,8 @@
 <header>
-  <nav class="navbar navbar-expand-lg mx-5 py-4">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex justify-content-between align-items-center p-0">  
-      <a class="navbar-brand" href="#">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="157" height="60">
+      <a class="navbar-brand" href="{{ path('home.index') }}">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" id="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars toggle"></i>
@@ -10,19 +10,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active fs-4" aria-current="page" href="#">Accueil</a>
+            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'home.index' %}active{% endif %}" aria-current="page" href="{{ path('home.index') }}">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" href="#">Nos services</a>
+            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'services.index' %}active{% endif %}" href="{{ path('services.index') }}">Nos services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" href="#">Nos occasions</a>
+            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'occasions.index' %}active{% endif %}" href="{{ path('occasions.index') }}">Nos occasions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" href="#">Contact</a>
+            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'contact.index' %}active{% endif %}" href="{{ path('contact.index') }}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == '' %}active{% endif %}" href="">Espace pro</a>
           </li>
         </ul>
-          <a class="btn button-p  fs-4" href="#">Se connecter</a>
+        <a class="btn button-p" href="">Se connecter</a>
       </div>
     </div>
   </nav>

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 justify-content-around">
+        <h1 class="text-center h1 h1-border">Contactez-nous</h1>
+        <p class="text-center text-general">
+        Vous avez besoin d'informations complémentaires concernant le garage, 
+        nos services ou une des voitures disponible à la vente ? Faites-le nous savoir, 
+        nous prendrons le temps de vous lire et de vous répondre dans les meilleurs delais.
+        </p>
+        <div class="row align-items-around">
+            <div class="col-md-6">
+                <form class="row g-3 fs-4 mt-4" id="Form">
+                    <div class="col-lg-6">
+                        <label for="lastname" class="form-label">Nom</label>
+                        <input type="text" class="form-control" maxlength="50" placeholder="Nom">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="firstname" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" maxlength="50" placeholder="Prénom">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" maxlength="255" placeholder="example@example.fr">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="text" class="form-control" maxlength="20" placeholder="0600000000">
+                    </div>
+                    <div class="col-12">
+                        <label for="subject" class="form-label">Sujet</label>
+                        <input type="text" class="form-control" maxlength="20" disabled value="Golf VII GTI">
+                    </div>
+                    <div class="col-12">
+                        <label for="comment" class="form-label">Commentaire</label>
+                        <textarea type="text" class="form-control" id="areaContact" rows="5" placeholder="Max 255 caractères"></textarea>
+                        <p class="fs-5" id="lengthValueContact">0 / 255 caractères</p>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <button type="submit" class="btn button-p fs-4 fw-medium">Soumettre le formulaire</button>
+                    </div>
+                </form> 
+            </div>
+            <div class="col-md-4 offset-md-1 align-self-center">
+                <div class="contact-information">
+                    <p class="m-2">Garage V.Parrot</p>
+                    <p class="m-2">1 Allée Gabriel Biénès</p>
+                    <p class="m-2">31000 Toulouse</p>
+                    <p class="m-2">Tél. : 06 XX XX XX XX</p>
+                    <p class="m-2">@ : garage@parrot.fr</p>
+                </div>
+                <div class="map">
+                    <div class="m-auto" id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

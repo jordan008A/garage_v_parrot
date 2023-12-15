@@ -1,0 +1,20 @@
+.contact-information {
+  font-size: large;
+  color: #262526;
+  text-shadow: 2px 2px 8px rgba(15, 15, 15, 0.5);
+}
+
+.contact-information, .map {
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+.contact-information {
+  text-align: center;
+}
+
+.map {
+  align-self: center;
+}
+}
