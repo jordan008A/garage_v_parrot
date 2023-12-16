@@ -1,25 +1,25 @@
 /* FORM */
-#Form {
+.form-p {
   background-color: #D92332;
   color: #ffffff;
   border-radius: 32px;
   padding: 20px;
 }
 
-#Form input::placeholder, 
-#Form input, 
-#Form textarea::placeholder, 
-#Form textarea, 
-#Form select {
-  color: #D92332;
+.form-p input::placeholder, 
+.form-p input, 
+.form-p textarea::placeholder, 
+.form-p textarea, 
+.form-p select {
+  color: #D92332 !important;
   font: italic large sans-serif;
 }
 
-#Form input {
+.form-p input {
   overflow-wrap: break-word;
 }
 
-#lengthValueReview {
+#lengthValue175 {
   font-size: 20px;
 }
 
@@ -32,7 +32,7 @@
 .rating .star {
   cursor: pointer;
   font-size: 36px;
-  color: #ffffff;
+  color: rgba(255, 215, 0, 0.4);
   padding: 0px 8px;
 }
 
@@ -46,7 +46,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  #Form {
+  .form-p {
     border-radius: 0px;
     font-size: 10px;
   }
@@ -56,17 +56,13 @@
     padding: 0px 4px;
   }
 
-  #Form input::placeholder, 
-  #Form input, 
-  #Form textarea::placeholder, 
-  #Form textarea, 
-  #Form select, 
-  #lengthValueReview {
+  .form-p input::placeholder, 
+  .form-p input, 
+  .form-p textarea::placeholder, 
+  .form-p textarea, 
+  .form-p select, 
+  #lengthValue175,
+  .form-p label {
     font-size: 16px;
   }
-
-  #Form label {
-    font-size: 20px;
-  }
-  
 }

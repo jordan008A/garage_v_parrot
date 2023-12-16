@@ -49,6 +49,7 @@ CREATE TABLE cars (
   title VARCHAR(50) NOT NULL,
   price INT(11) NOT NULL,
   year YEAR NOT NULL,
+  mileage INT(11) NOT NULL,
   puissance_din INT(11) NOT NULL,
   puissance_fiscale INT(11) NOT NULL,
   automatically BOOLEAN NOT NULL,

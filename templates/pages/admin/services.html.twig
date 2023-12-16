@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Services{% endblock %}
+
+{% block body %}
+
+{% include "partials/_header-admin.html.twig" %}
+
+  <div class="container mt-4">
+    <form id="adminForm">
+      <div class="mb-3">
+        <label for="titre" class="form-label">Titre :</label>
+        <input type="text" class="form-control" maxlength="50">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Contenu :</label>
+        <textarea type="text" class="form-control" id="area255" rows="5" placeholder="Max 255 caractères"></textarea>
+        <p id="lengthValue255">0 / 255 caractères</p>
+      </div>
+      <div class="mb-3 select-image">
+        <label for="imageInput" class="custom-file-upload" id="customFileLabel">
+          Choisir une image
+        </label>
+        <input type="file" id="imageInput" name="image" accept=".jpg, .jpeg, .png">
+        <div id="imagePreview"></div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <div>
+          <button class="btn-update btn btn-sm">Modifier</button>
+        </div>
+        <div>
+          <button class="btn-create btn btn-sm">Créer</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="service-list mt-4 table-responsive">
+    <table class="table table-sm d-none d-md-table">
+      <!-- Entête du tableau -->
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Image</th>
+          <th scope="col">Texte</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <!-- Contenu du tableau -->
+      <tbody>
+        <tr>
+          <td>Réparation de mécanique générale</td>
+          <td><img class="service-image" src="{{ asset('assets/img/services/mecanique.jpg') }}"></td>
+          <td>
+          Notre garage offre une expertise pointue en réparations mécaniques, 
+          résolvant efficacement les problèmes liés au moteur, à la transmission 
+          et à d'autres composants essentiels. Nous diagnostiquons avec précision 
+          et réparons rapidement pour vous remettre sur la route en toute sécurité.
+          </td>
+          <td>
+            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>Réparation et remplacement des pneus</td>
+          <td><img class="service-image" src="{{ asset('assets/img/services/pneus.jpg') }}"></td>
+          <td>
+          Notre garage offre une expertise pointue en réparations mécaniques, 
+          résolvant efficacement les problèmes liés au moteur, à la transmission 
+          et à d'autres composants essentiels. Nous diagnostiquons avec précision 
+          et réparons rapidement pour vous remettre sur la route en toute sécurité.
+          </td>
+          <td>
+            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Pour les écrans plus petits -->
+    <div class="card-deck d-md-none">
+      <div id="serviceCard" class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center mb-2">
+            <h5 class="card-title">Réparation de mécanique générale</h5>
+          </div>
+          <div class="d-flex flex-colum justify-content-around">
+            <div class="mt-2 me-2">
+              <img class="service-image" src="{{ asset('assets/img/services/mecanique.jpg') }}">
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+              <div class="mb-2">
+                <button class="btn-edit btn btn-sm"><i class="fas fa-edit"></i></button>
+              </div>
+              <div>
+                <button class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center my-2">
+            <p class="card-text mx-2">
+            Notre garage offre une expertise pointue en réparations mécaniques, 
+            résolvant efficacement les problèmes liés au moteur, à la transmission 
+            et à d'autres composants essentiels. Nous diagnostiquons avec précision 
+            et réparons rapidement pour vous remettre sur la route en toute sécurité.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ asset('assets/javascript/limitCharacters255.js') }}"></script>
+  <script src="{{ asset('assets/javascript/servicePreview.js') }}"></script>
+{% endblock %}

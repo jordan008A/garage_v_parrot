@@ -1,44 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Admin - Utilisateurs{% endblock %}
 
 {% block body %}
-  <div class="nav-admin">
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'contact.index' %}active-admin{% endif %}" href="#">Services</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Utilisateurs</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Horaires</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Avis client</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Voitures</a>
-  </div>
 
-  <div class="container user-form mt-4">
-    <form>
+{% include "partials/_header-admin.html.twig" %}
+
+  <div class="container mt-4">
+    <form id="adminForm">
       <div class="mb-3">
         <label for="name" class="form-label">Nom</label>
-        <input type="text" class="form-control" id="name">
+        <input type="text" class="form-control" maxlength="50">
       </div>
       <div class="mb-3">
         <label for="firstName" class="form-label">Prénom</label>
-        <input type="text" class="form-control" id="firstName">
+        <input type="text" class="form-control" maxlength="50">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Adresse e-mail</label>
-        <input type="email" class="form-control" id="email">
+        <input type="email" class="form-control">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="password">
+        <input type="password" class="form-control">
       </div>
       <div class="d-flex justify-content-around">
         <div>
-          <button class="btn-delete btn btn-sm">Modifier</button>
+          <button class="btn-update btn btn-sm">Modifier</button>
         </div>
         <div>
-          <button class="btn-edit btn btn-sm">Créer</button>
+          <button class="btn-create btn btn-sm">Créer</button>
         </div>
       </div>
     </form>
@@ -73,7 +64,7 @@
     </table>
     <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
-      <div id="user-card" class="card">
+      <div id="userCard" class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="card-title">Vincent.P</h5>
@@ -96,5 +87,5 @@
         </div>
       </div>
     </div>
-  </div>   
+  </div> 
 {% endblock %}

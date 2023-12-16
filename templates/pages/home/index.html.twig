@@ -3,62 +3,46 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<article class ="mx-1">
-  <div class="container info-container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="text-center my-3">
-          <h1 class="text-general h1">Bienvenue au garage V.Parrot</h1>
-        </div>
-        <div class="d-flex flex-column justify-content-evenly flex-lg-row align-items-lg-center">
-          <img src="{{ asset('assets/img/accueil/historique.jpg') }}" alt="Historique" width="450" style="border-radius: 4px; max-width: 100%;" class="d-block d-lg-none mx-auto mb-3 mb-lg-0">
-          <img src="{{ asset('assets/img/accueil/historique.jpg') }}" alt="Historique" width="450" style="border-radius: 4px; max-width: 100%;" class="d-lg-block d-none mb-3 mb-lg-0">
-          <div class="order-lg-last text-lg-center">
-            <p class="align-self-center text-general mt-3 mx-auto" style="max-width: 500px;">
-              Fondé en 2021 par Vincent Parrot, notre garage automobile à Toulouse est le fruit de 15 années d'expérience
-              solide et passionnée dans le domaine de la réparation automobile. Fortement investi dans le monde 
-              de l'automobile depuis ses débuts, Vincent Parrot a décidé de concrétiser son rêve en établissant 
-              son propre garage, dédié à offrir des services de réparation et d'entretien exceptionnels. 
-            </p>
-          </div>
-        </div>
-      </div>
+<article class ="article-container">
+    <div class="text-center mb-3">
+      <h1 class="text-general h1">Bienvenue au garage V.Parrot</h1>
     </div>
-  </div>
+    <div class="d-flex flex-column justify-content-evenly flex-lg-row align-items-lg-center">
+      <img src="{{ asset('assets/img/accueil/historique.jpg') }}" alt="Historique" class="article-img d-block order-lg-first">
+      <p class="article-text order-lg-last">
+        Fondé en 2021 par Vincent Parrot, notre garage automobile à Toulouse est le fruit 
+        de 15 années d'expérience solide et passionnée dans le domaine de la réparation automobile. 
+        Fortement investi dans le monde de l'automobile depuis ses débuts, 
+        Vincent Parrot a décidé de concrétiser son rêve en établissant son propre garage, 
+        dédié à offrir des services de réparation et d'entretien exceptionnels. 
+      </p>
+    </div>
 </article>
 
-<article class ="mx-1">
-  <div class="container info-container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="text-center mb-3">
-          <h1 class="text-general h1">Nos services</h1>
-        </div>
-        <div class="d-flex flex-column justify-content-evenly flex-lg-row align-items-lg-center">
-          <img src="{{ asset('assets/img/accueil/services.jpg') }}" alt="Services" width="450" style="border-radius: 4px; max-width: 100%;" class="d-block d-lg-none mx-auto mb-3 mb-lg-0 order-lg-last">
-          <img src="{{ asset('assets/img/accueil/services.jpg') }}" alt="Services" width="450" style="border-radius: 4px; max-width: 100%;" class="d-lg-block d-none mb-3 mb-lg-0 order-lg-last">
-          <div class="order-lg-first text-lg-center">
-            <p class="align-self-center text-general mt-3 mx-auto" style="max-width: 500px;">
-              Nous vous offrons une gamme complète de <a href="{{ path('services.index') }}" class="mx-1 link">services</a>
-               pour répondre à tous vos besoins de véhicule. De la vente de 
-               <a href="{{ path('occasions.index') }}" class="mx-1 link">voitures d'occasion</a>, soigneusement sélectionnées et vérifiées, 
-               à une expertise mécanique complète comprenant réparations générales, entretien périodique,
-                services de climatisation et changement de pneus. En cas de dommages extérieurs,
-                 notre équipe expérimentée effectue des réparations de carrosserie de qualité.
-                 Notre garage vise à offrir une solution complète pour vos besoins automobiles,
-                  mettant l'accent sur la qualité, la sécurité et la satisfaction du client.
-            </p>
-          </div>
-        </div>
-      </div>
+<article class ="article-container">
+    <div class="text-center mb-3">
+      <h1 class="text-general h1">Nos services</h1>
     </div>
-  </div>
+    <div class="d-flex flex-column justify-content-evenly flex-lg-row align-items-lg-center">
+      <img src="{{ asset('assets/img/accueil/services.jpg') }}" alt="Services" class="article-img d-block order-lg-last">
+        <p class="article-text">
+          Nous vous offrons une gamme complète de 
+          <a href="{{ path('services.index') }}" class="mx-1 link">services</a>
+          pour répondre à tous vos besoins de véhicule. De la vente de 
+          <a href="{{ path('occasions.index') }}" class="mx-1 link">voitures d'occasion</a>
+          , soigneusement sélectionnées et vérifiées, à une expertise mécanique complète comprenant 
+          réparations générales, entretien périodique, services de climatisation et changement de pneus. 
+          En cas de dommages extérieurs, notre équipe expérimentée effectue des réparations de 
+          carrosserie de qualité. Notre garage vise à offrir une solution complète pour vos besoins 
+          automobiles, mettant l'accent sur la qualité, la sécurité et la satisfaction du client.
+        </p>
+    </div>
 </article>
 
 
 <div class="container">
   <h1 class="text-center h1">Votre avis compte pour nous !</h1>
-  <form class="row g-3 fs-4" id="Form">
+  <form class="row g-3 fs-4 form-p">
     <div class="col-md-6">
       <label for="lastname" class="form-label">Nom</label>
       <input type="text" class="form-control" maxlength="50" placeholder="Nom">
@@ -76,8 +60,8 @@
     </div>
     <div class="col-12">
       <label for="comment" class="form-label">Commentaire</label>
-      <textarea type="text" class="form-control" id="areaReview" rows="4" placeholder="Max 175 caractères"></textarea>
-      <p id="lengthValueReview">0 / 175 caractères</p>
+      <textarea type="text" class="form-control" id="area175" rows="4" placeholder="Max 175 caractères"></textarea>
+      <p id="lengthValue175">0 / 175 caractères</p>
     </div>
     <div class="col-md-6 d-flex align-items-center justify-content-center">
       <div class="rating">
@@ -96,7 +80,7 @@
 </div>
 
 <div class="container mt-5">
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="true">
+  <div id="reviewCarousel" class="carousel slide" data-bs-ride="true">
     <div class="carousel-inner">
       <!-- Première diapositive -->
       <div class="carousel-item active">
@@ -169,14 +153,16 @@
       </div>
     </div>
     <!-- Contrôles du carrousel -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>
       <span class="visually-hidden">Précédent</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon button-s" aria-hidden="true"></span>
       <span class="visually-hidden">Suivant</span>
     </button>
   </div>
 </div>
+<script src="{{ asset('assets/javascript/limitCharacters175.js') }}"></script>
+<script src="{{ asset('assets/javascript/saveStarsValue.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,251 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Avis client{% endblock %}
+
+{% block body %}
+
+{% include "partials/_header-admin.html.twig" %}
+
+  <div class="container mt-4">
+    <form id="adminForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom</label>
+        <input type="text" class="form-control" maxlength="50">
+      </div>
+      <div class="mb-3">
+        <label for="firstName" class="form-label">Prénom</label>
+        <input type="text" class="form-control" maxlength="50">
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">Sujet</label>
+        <select class="form-select">
+          <option selected disabled>Sélectionner un sujet...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <div class="mb-3">
+        <label for="content" class="form-label">Contenu :</label>
+        <textarea type="text" class="form-control" id="area175" rows="5" placeholder="Max 175 caractères"></textarea>
+        <p id="lengthValue175">0 / 175 caractères</p>
+      </div>
+      <div class="col-md-12 mb-2 d-flex align-items-center justify-content-center">
+        <div class="rating">
+          <span class="star" data-rating="1">&#9733;</span>
+          <span class="star" data-rating="2">&#9733;</span>
+          <span class="star" data-rating="3">&#9733;</span>
+          <span class="star" data-rating="4">&#9733;</span>
+          <span class="star" data-rating="5">&#9733;</span>
+        </div>
+        <input type="hidden" name="rating" id="ratingValue">
+      </div>
+      <div class="d-flex justify-content-around">
+        <div>
+          <button class="btn-update btn btn-sm">Modifier</button>
+        </div>
+        <div>
+          <button class="btn-create btn btn-sm">Créer</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="container mt-5">
+    <h1 class="h1">Avis postés</h1>
+    <div id="postedReviewCarousel" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        <!-- Première diapositive -->
+        <div class="carousel-item active">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Diapositives supplémentaires avec contenu dynamique -->
+        <div class="carousel-item">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contrôles du carrousel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon button-s" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+    <h1 class="h1">Avis à valider</h1>
+    <div id="validateReviewCarousel" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        <!-- Première diapositive -->
+        <div class="carousel-item active">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-validate-review btn btn-sm"><i class="far fa-circle-check"></i></button>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Diapositives supplémentaires avec contenu dynamique -->
+        <div class="carousel-item">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-validate-review btn btn-sm"><i class="far fa-circle-check"></i></button>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>John.Dfffffff</p>
+              <div class="stars">
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+                <span class="rate">&#9733;</span>
+              </div>
+            </div>
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">Entretien périodique</p>
+              <div>
+                <button class="btn-validate-review btn btn-sm"><i class="far fa-circle-check"></i></button>
+                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="text">
+              <p>
+              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
+              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contrôles du carrousel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#validateReviewCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#validateReviewCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon button-s" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="{{ asset('assets/javascript/limitCharacters175.js') }}"></script>
+  <script src="{{ asset('assets/javascript/saveStarsValue.js') }}"></script>
+{% endblock %}

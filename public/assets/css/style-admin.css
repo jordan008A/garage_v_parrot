@@ -12,8 +12,20 @@
   font-weight: 500;
 }
 
-.user-list table {
+#adminForm {
+  margin: 40px auto;
+  width: 60%;
   color: #262526;
+  font-size: 24px;
+  padding: 30px;
+  border-radius: 32px;
+  box-shadow: 4px 4px 12px rgba(38, 37, 38, 0.5);
+}
+
+#adminForm select,
+#adminForm input::placeholder {
+  color: #262526;
+  font-size: 20px;
 }
 
 .btn-delete {
@@ -24,33 +36,42 @@
   color: #262526;
 }
 
+
+
 .btn-delete, .btn-edit {
   border: none;
   font-size: 24px;
   background-color: #ffffff;
   padding: 0px;
-  margin-right: 10px;
+  margin: 5px;
 }
 
-#user-card {
-  margin: 10px 50px;
-}
+@media screen and (max-width: 992px) {
+  #adminForm {
+    width: 70%;
+  }
+  
+  #adminForm {
+    font-size: 20px;
+  }
 
-.badge {
+  #adminForm select,
+#adminForm input::placeholder {
   font-size: 16px;
 }
-
-.user-form {
-  width: 50%;
 }
 
 @media screen and (max-width: 768px) {
-.nav-admin {
-font-size: 16px;
-}
+  .nav-admin {
+  font-size: 16px;
+  }
+
+  #adminForm {
+    width: 90%;
+  }
 }
 
-@media screen and (max-width: 596px) {
+@media screen and (max-width: 576px) {
   .nav-admin {
   font-size: 24px;
   display: block;
@@ -64,28 +85,24 @@ font-size: 16px;
     display: none;
   }
 
-  #user-card {
-    margin: 10px 0;
-  }
-
   .card-title {
     font-size: 16px;
   }
-
+  
   .card-text {
     font-size: 12px;
   }
 
   .btn-delete, .btn-edit {
     font-size: 20px;
-    margin-right: 10px;
   }
 
-  .badge {
-    font-size: 12px;
+  #adminForm {
+    font-size: 16px;
   }
 
-  .user-form {
-    width: 80%;
-  }
-  }
+  #adminForm select,
+#adminForm input::placeholder {
+  font-size: 12px;
+}
+}

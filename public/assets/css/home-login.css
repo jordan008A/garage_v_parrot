@@ -26,14 +26,14 @@
   box-shadow: 6px 6px 16px #D92332;
 }
 
-@media screen and (max-width: 992px) {
-
-}
-
 @media screen and (max-width: 768px) {
-
+  #loginForm {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 576px) {
-  
+  #loginForm {
+    width: 100%;
+  }
 }

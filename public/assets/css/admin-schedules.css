@@ -1,0 +1,26 @@
+#schedules {
+width: 360px;  
+}
+
+#schedules .jour {
+  border-bottom: 1px solid rgba(38, 37, 38, 0.5);
+  font-size: 20px;
+}
+
+#schedules input {
+  border: none;
+  color: #D92332;
+  width: 70%;
+}
+
+#schedules .jour span {
+  display: inline-block;
+  width: 20%;
+}
+
+@media screen and (max-width: 576px) {
+  #schedules .jour {
+    border-bottom: 1px solid rgba(38, 37, 38, 0.5);
+    font-size: 16px;
+  }
+}

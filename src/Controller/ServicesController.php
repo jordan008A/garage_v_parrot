@@ -11,7 +11,7 @@ class ServicesController extends AbstractController
     #[Route('/services', name: 'services.index', methods: ['GET'] )]
     public function index(): Response
     {
-        return $this->render('pages/services/index.html.twig', [
+        return $this->render('pages/home/login.html.twig', [
             'controller_name' => 'ServicesController',
         ]);
     }

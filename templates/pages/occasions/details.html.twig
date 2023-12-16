@@ -58,7 +58,7 @@
 
 <div class="container">
   <h1 class="text-center h1 h1-border pb-3">● Demandez-nous plus d'informations ●</h1>
-    <form class="row g-3 fs-4 mt-4" id="Form">
+    <form class="row g-3 fs-4 mt-4 form-p">
       <div class="col-md-6">
         <label for="lastname" class="form-label">Nom</label>
         <input type="text" class="form-control" maxlength="50" placeholder="Nom">
@@ -81,8 +81,8 @@
       </div>
       <div class="col-12">
         <label for="comment" class="form-label">Commentaire</label>
-        <textarea type="text" class="form-control" id="areaContact" rows="5" placeholder="Max 255 caractères"></textarea>
-        <p class="fs-5" id="lengthValueContact">0 / 255 caractères</p>
+        <textarea type="text" class="form-control" id="area255" rows="5" placeholder="Max 255 caractères"></textarea>
+        <p id="lengthValue255">0 / 255 caractères</p>
       </div>
       <div class="col-md-12 d-flex justify-content-center">
         <button type="submit" class="btn button-p fs-3 fw-medium">Soumettre le formulaire</button>
@@ -90,4 +90,6 @@
     </form>   
   </div>
 </div>
+<script src="{{ asset('assets/javascript/updateDivHeight.js') }}"></script>
+<script src="{{ asset('assets/javascript/limitCharacters255.js') }}"></script>
 {% endblock %}

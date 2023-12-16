@@ -1,0 +1,11 @@
+<nav class="nav-admin">
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'contact.index' %}active-admin{% endif %}" href="#">Services</a>
+    <span>||</span>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Utilisateurs</a>
+    <span>||</span>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Horaires</a>
+    <span>||</span>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Avis client</a>
+    <span>||</span>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Voitures</a>
+  </nav>

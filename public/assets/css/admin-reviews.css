@@ -1,0 +1,47 @@
+.btn-delete-review,
+.btn-delete-review:hover {
+  color: #D92332;
+}
+
+.btn-delete-review:hover,
+.btn-validate-review:hover {
+  transform: scale(1.2);
+}
+
+.btn-validate-review,
+.btn-validate-review:hover {
+  color: #008000;
+}
+
+.btn-delete-review, 
+.btn-validate-review {
+  border: none;
+  font-size: 40px;
+  background-color: #ffffff;
+  padding: 0px;
+  margin: auto 20px;
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 992px) {
+  .btn-delete-review, 
+  .btn-validate-review {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-delete-review, 
+.btn-validate-review {
+  font-size: 20px;
+  margin: auto 10px;
+}
+}
+
+@media screen and (max-width: 576px) {
+  .btn-delete-review, 
+.btn-validate-review {
+  font-size: 16px;
+  margin: auto 6px;
+}
+}

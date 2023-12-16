@@ -20,13 +20,13 @@
   font-size: 30px;
 }
 
+.navbar-nav .nav-link {
+  font-size: 20px !important;
+}
+
 @media screen and (max-width: 576px) {
   .navbar {
     margin: 0px 10px 0px 20px;
-  }
-
-  .navbar-nav .nav-link {
-    font-size: 20px !important;
   }
 
   #logo {
