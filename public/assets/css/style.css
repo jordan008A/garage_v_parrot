@@ -15,6 +15,14 @@
 @import url('footer.css');
 
 /* GENERAL */
+body {
+  font-family: Barlow;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Rajdhani;
+}
+
 .navbar-nav .nav-link, .link, .toggle {
   color: #D92332;
 }

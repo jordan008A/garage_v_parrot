@@ -1,0 +1,87 @@
+/* Rajdhani - Light */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../../fonts/Rajdhani/Rajdhani-Light.ttf') format('truetype');
+}
+
+/* Rajdhani - Regular */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/Rajdhani/Rajdhani-Regular.ttf') format('truetype');
+}
+
+/* Rajdhani - Medium */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../../fonts/Rajdhani/Rajdhani-Medium.ttf') format('truetype');
+}
+
+/* Rajdhani - SemiBold */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../fonts/Rajdhani/Rajdhani-SemiBold.ttf') format('truetype');
+}
+
+/* Rajdhani - Bold */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/Rajdhani/Rajdhani-Bold.ttf') format('truetype');
+}
+
+/* Barlow - Italic */
+@font-face {
+  font-family: 'Barlow';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../../fonts/Barlow/Barlow-Italic.ttf') format('truetype');
+}
+
+/* Barlow - Light */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../../fonts/Barlow/Barlow-Light.ttf') format('truetype');
+}
+
+/* Barlow - Regular */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+}
+
+/* Barlow - Medium */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../../fonts/Barlow/Barlow-Medium.ttf') format('truetype');
+}
+
+/* Barlow - SemiBold */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../fonts/Barlow/Barlow-SemiBold.ttf') format('truetype');
+}
+
+/* Barlow - Bold */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/Barlow/Barlow-Bold.ttf') format('truetype');
+}
