@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS garage_v_parrot;
 USE garage_v_parrot;
 
 CREATE TABLE users (
-  id CHAR(36) PRIMARY KEY NOT NULL,
+  id BINARY(16) PRIMARY KEY NOT NULL,
   email VARCHAR(255) NOT NULL,
   password CHAR(60) NOT NULL,
   firstname VARCHAR(50) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE motor_technologies (
 );
 
 CREATE TABLE cars (
-  id CHAR(36) PRIMARY KEY NOT NULL,
+  id BINARY(16) PRIMARY KEY NOT NULL,
   title VARCHAR(50) NOT NULL,
   price INT(11) NOT NULL,
   year YEAR NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE messages (
   phone_number VARCHAR(20) NOT NULL,
   text VARCHAR(255) NOT NULL,
   subject VARCHAR(255) NOT NULL,
-  car CHAR(36),
+  car BINARY(16),
   FOREIGN KEY (car) REFERENCES cars(id)
 );
 
@@ -75,13 +75,13 @@ CREATE TABLE pictures (
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   picture VARCHAR(255) NOT NULL,
   is_primary BOOLEAN default 0,
-  car CHAR(36) NOT NULL,
+  car BINARY(16) NOT NULL,
   FOREIGN KEY (car) REFERENCES cars(id)
 );
 
 -- Table associative
 CREATE TABLE schedules_users (
-    user_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     schedule_id INT(11) NOT NULL,
     PRIMARY KEY (user_id, schedule_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -90,7 +90,7 @@ CREATE TABLE schedules_users (
 
 -- Table associative
 CREATE TABLE reviews_users (
-    user_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     review_id INT(11) NOT NULL,
     PRIMARY KEY (user_id, review_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -99,7 +99,7 @@ CREATE TABLE reviews_users (
 
 -- Table associative
 CREATE TABLE services_users (
-    user_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     service_id INT(11) NOT NULL,
     PRIMARY KEY (user_id, service_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -108,8 +108,8 @@ CREATE TABLE services_users (
 
 -- Table associative
 CREATE TABLE cars_users (
-    user_id CHAR(36) NOT NULL,
-    cars_id CHAR(36) NOT NULL,
+    user_id BINARY(16) NOT NULL,
+    cars_id BINARY(16) NOT NULL,
     PRIMARY KEY (user_id, cars_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (cars_id) REFERENCES cars(id)

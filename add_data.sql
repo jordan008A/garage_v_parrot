@@ -13,6 +13,78 @@ INSERT INTO motor_technologies (property) VALUES ('Électrique');
 INSERT INTO motor_technologies (property) VALUES ('Hybride');
 INSERT INTO motor_technologies (property) VALUES ('GPL');
 INSERT INTO motor_technologies (property) VALUES ('Éthanol');
+INSERT INTO motor_technologies (property) VALUES ('Autres');
+
+INSERT INTO services (title, text, picture) VALUES 
+('Réparation de mécanique générale', 
+'Notre garage offre une expertise pointue en réparations mécaniques, résolvant efficacement les 
+problèmes liés au moteur, à la transmission et à d''autres composants essentiels. Nous diagnostiquons 
+avec précision et réparons rapidement pour vous remettre sur la route en toute sécurité.',
+'mecanique.jpg'),
+('Entretien périodique', 
+'Assurer la longévité de votre véhicule est notre priorité. Notre service d''entretien périodique 
+comprend des vérifications rigoureuses, des changements d''huile réguliers et une maintenance préventive 
+pour garantir des performances optimales et réduire les risques de pannes inattendues.',
+'entretien.jpg'),
+('Service de climatisation', 
+'La fraîcheur dans votre voiture est cruciale. Notre équipe spécialisée offre un service complet de 
+climatisation, du diagnostic des problèmes de refroidissement à la réparation des fuites, 
+assurant un confort optimal dans votre véhicule par tous les temps.',
+'climatisation.jpg'),
+('Réparation et remplacement des pneus', 
+'Des pneus en bon état sont essentiels pour une conduite sûre. Nous proposons des services de 
+réparation de pneus crevés, d''alignement, et de remplacement, avec une gamme de marques et de modèles 
+pour répondre à vos besoins spécifiques.',
+'pneus.jpg'),
+('Réparation de la carrosserie', 
+'Des bosses aux éraflures, notre équipe de réparation de carrosserie redonne à votre véhicule son 
+aspect d''origine. Nous utilisons des techniques avancées pour restaurer la carrosserie, vous offrant 
+un résultat impeccable et une voiture qui brille comme neuve.',
+'carrosserie.jpg'),
+('Vente de véhicules d''occasions', 
+'Explorez notre inventaire complet de véhicules d''occasion, rigoureusement inspectés pour assurer 
+fiabilité et performance. Notre équipe experte vous guide dans le choix du véhicule idéal, en mettant 
+l''accent sur la transparence et la qualité. Trouvez ici votre prochaine voiture en toute confiance !',
+'occasion.jpg');
+
+INSERT INTO reviews (firstname, lastname, text, approved, service_id, rate) VALUES 
+('John', 
+'Doe',
+'La réparation de mécanique était rapide et efficace, mon véhicule fonctionne comme neuf!',
+false,
+1,
+5),
+('Bruce', 
+'Wayne',
+'L''entretien périodique est toujours impeccable. Mon véhicule est entre de bonnes mains.',
+true,
+2,
+4),
+('Tony', 
+'Stark',
+'Le service de climatisation a rendu ma conduite estivale très agréable. Fraîcheur garantie!',
+false,
+3,
+5),
+('Harry', 
+'Potter',
+'J''ai fait réparer et remplacer mes pneus ici. Ils ont fait un excellent travail et sont très rapides.',
+false,
+4,
+5),
+('Ron', 
+'Wesley',
+'Après un accident, la réparation de la carrosserie était parfaite. Ma voiture est comme neuve.',
+true,
+5,
+4),
+('Catherine', 
+'Bernaud',
+'J''ai acheté une voiture ici et je suis ravi ! En parfait état, conforme à la description. 
+Le personnel était serviable et honnête. Une expérience d''achat très satisfaisante.',
+true,
+6,
+3);
 
 INSERT INTO brands (property) VALUES 
 ('Acura'),
