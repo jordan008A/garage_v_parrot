@@ -21,6 +21,64 @@ class CarsRepository extends ServiceEntityRepository
         parent::__construct($registry, Cars::class);
     }
 
+    public function findCarsWithPrimaryPicture()
+    {
+        // Construire une requête pour obtenir des voitures avec leur image principale, leur marque et leur technologie moteur
+        return $this->createQueryBuilder('c')
+            ->addSelect('p', 'b', 'm') // Ajouter des sélections pour les images, les marques et les technologies moteur
+            ->leftJoin('c.pictures', 'p', 'WITH', 'p.is_primary = true') // Joindre les images principales
+            ->leftJoin('c.brand', 'b') // Joindre la marque
+            ->leftJoin('c.motorTechnologie', 'm') // Joindre la technologie moteur
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findFilteredCars($yearMin, $yearMax, $kmMin, $kmMax, $priceMin, $priceMax)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        if ($yearMin) {
+            $qb->andWhere('c.year >= :yearMin')
+               ->setParameter('yearMin', $yearMin);
+        }
+
+        if ($yearMax) {
+            $qb->andWhere('c.year <= :yearMax')
+               ->setParameter('yearMax', $yearMax);
+        }
+
+        if ($kmMin) {
+            $qb->andWhere('c.mileage >= :kmMin')
+               ->setParameter('kmMin', $kmMin);
+        }
+
+        if ($kmMax) {
+            $qb->andWhere('c.mileage <= :kmMax')
+               ->setParameter('kmMax', $kmMax);
+        }
+
+        if ($priceMin) {
+            $qb->andWhere('c.price >= :priceMin')
+               ->setParameter('priceMin', $priceMin);
+        }
+
+        if ($priceMax) {
+            $qb->andWhere('c.price <= :priceMax')
+               ->setParameter('priceMax', $priceMax);
+        }
+
+        $qb->leftJoin('c.pictures', 'p')
+           ->addSelect('p')
+           ->andWhere('p.is_primary = true');
+
+        $qb->leftJoin('c.brand', 'b');
+
+        $qb->leftJoin('c.motorTechnologie', 'm');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 //    /**
 //     * @return Cars[] Returns an array of Cars objects
 //     */

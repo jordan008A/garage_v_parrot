@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Repository\ServicesRepository;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
 
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact.index', methods: ['GET', 'POST'])]
-    public function index(Request $request, ServicesRepository $servicesRepository, EntityManagerInterface $manager, ValidatorInterface $validator): Response
+    public function index(Request $request, ServicesRepository $servicesRepository, EntityManagerInterface $manager, ValidatorInterface $validator, CsrfTokenManagerInterface $csrfTokenManager): Response
     {
         if ($request->isMethod('POST')) {
             $data = $request->request->all();
@@ -27,17 +29,22 @@ class ContactController extends AbstractController
             $message->setPhoneNumber($data['phone']);
             $message->setText($data['comment']);
             
-            if (!empty($data['subject'])){
+            if (!empty($data['subject']) && isset($data['_csrf_token'])){
+              //Création du token CSRF
+              $csrfToken = new CsrfToken('contact-index-form', $data['_csrf_token']);
+
               // Récupération du service
               $serviceId = $data['subject'];
               $service = $servicesRepository->find($serviceId);
               $message->setService($service);
               $errors = $validator->validate($message);
-              if (count($errors) > 0) {
-                foreach ($errors as $error) {
-                  $this->addFlash('error', $error->getMessage());
-                }
+
+              if (count($errors) > 0 || !$csrfTokenManager->isTokenValid($csrfToken)) {
+
+                $this->addFlash('error', 'Une erreur est survenue.');
+
               } else {
+
                 $manager->persist($message);
                 $manager->flush();
     
@@ -45,8 +52,8 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('home.index');
               }
             } else {
-                // Gérer le cas où le service n'est pas trouvé
-                $this->addFlash('error', 'Sujet non répertorié.');
+                // Gérer le cas où il y ai un problème avec le service ou le token CSRF
+                $this->addFlash('error', 'Une erreur est survenue.');
             }
 
           }

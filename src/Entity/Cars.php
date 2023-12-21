@@ -3,9 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CarsRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\UuidV6 as Uuid;
+use Symfony\Component\Uid\UuidV7 as Uuid;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -28,9 +27,16 @@ class Cars
     #[ORM\Column]
     private ?int $price;
 
-    #[Assert\NotBlank()]
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $year;
+    #[Assert\Type(type: 'digit', message: "L'année doit être un nombre.")]
+    #[Assert\Length(min: 4, max: 4, exactMessage: "L'année doit être composée de 4 chiffres.")]
+    #[Assert\Range(
+        min: 1770, 
+        max: "this_year", 
+        minMessage: "L'année doit être au minimum 1770.", 
+        maxMessage: "L'année ne peut pas être postérieure à l'année actuelle."
+    )]
+    #[ORM\Column(type: 'string', length: 4)]
+    private ?string $year;
 
     #[Assert\NotNull()]
     #[ORM\Column]
@@ -97,12 +103,12 @@ class Cars
         return $this;
     }
 
-    public function getYear(): ?\DateTimeInterface
+    public function getYear(): ?string
     {
         return $this->year;
     }
 
-    public function setYear(\DateTimeInterface $year): static
+    public function setYear(string $year): static
     {
         $this->year = $year;
 

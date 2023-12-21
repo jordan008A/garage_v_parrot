@@ -3,60 +3,67 @@
 {% block title %}Nos occasion{% endblock %}
 
 {% block body %}
+    <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    </div>
+
     <main>
         <div class="container mt-5">
             <h1 class="text-center mx-5 mb-5 h1">Nos voitures d'occasion</h1>
-            <!-- Bouton Filtres -->
             <button id="toggleFiltersBtn" class="btn button-p">Ξ Filtres</button>
-            <!-- Filters for year, mileage, and price -->
-            <!-- Year -->
             <div id="filters" class="row my-3 justify-content-center">
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="yearMin" class="form-label">Année min</label>
-                    <input type="number" class="form-control" id="yearMin">
+                    <input type="number" class="form-control filter" id="yearMin">
                 </div>
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="yearMax" class="form-label">Année max</label>
-                    <input type="number" class="form-control" id="yearMax">
+                    <input type="number" class="form-control filter" id="yearMax">
                 </div>
-                <!-- Km -->
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="kmMin" class="form-label">Kilométrage min</label>
-                    <input type="number" class="form-control" id="kmMin">
+                    <input type="number" class="form-control filter" id="kmMin">
                 </div>
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="kmMax" class="form-label">Kilométrage max</label>
-                    <input type="number" class="form-control" id="kmMax">
+                    <input type="number" class="form-control filter" id="kmMax">
                 </div>
-                <!-- Price -->
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="priceMin" class="form-label">Prix min</label>
-                    <input type="number" class="form-control" id="priceMin">
+                    <input type="number" class="form-control filter" id="priceMin">
                 </div>
                 <div class="col-md-3 mt-3 mx-1">
                     <label for="priceMax" class="form-label">Prix max</label>
-                    <input type="number" class="form-control" id="priceMax">
+                    <input type="number" class="form-control filter" id="priceMax">
                 </div>
             </div>
-            <!-- Car cards -->
-            <div class="row justify-content-around">
-                <!-- Replace with data from your backend -->
+            <div id="carListContainer" class="row justify-content-around">
                 {% for car in cars %}
                 <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/{{picture.isPrimary}}') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
+                    {% set primaryPicture = car.pictures|filter(picture => picture.isPrimary)|first %}
+                    {% if primaryPicture %}
+                        <img src="{{ asset('assets/img/uploads/'~ primaryPicture.picture) }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
+                    {% endif %}
                     <div class="card-body">
                         <p class="card-title text-center fs-4">{{car.title}}</p>
-                        <p class="card-text text-center">marque : {{car.brand}}</p>
+                        <p class="card-text text-center">marque : {{car.brand.property}}</p>
                         <p class="card-price text-center fs-4">{{car.price}}€</p>
                         <p class="card-text text-center">Année: {{car.year}}</p>
                         <p class="card-text text-center">{{car.mileage}}km</p>
-                        <a href="{{car.id}}" class="btn button-p d-block">Plus de détails</a>
+                        <a href="/occasions/{{car.id}}" class="btn button-p d-block">Plus de détails</a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </main>
+    <script src="{{ asset('assets/javascript/filtersCars.js') }}"></script>
     <script src="{{ asset('assets/javascript/updateImageHeight.js') }}"></script>
     <script src="{{ asset('assets/javascript/toggleFiltersDisplay.js') }}"></script>
 {% endblock %}

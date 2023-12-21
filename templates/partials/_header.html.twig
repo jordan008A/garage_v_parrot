@@ -12,12 +12,12 @@
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'home.index' %}active{% endif %}" aria-current="page" href="{{ path('home.index') }}">Accueil</a>
           </li>
-          {# <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'services.index' %}active{% endif %}" href="{{ path('services.index') }}">Nos services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'occasions.index' %}active{% endif %}" href="{{ path('occasions.index') }}">Nos occasions</a>
-          </li> #}
+          </li>
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'contact.index' %}active{% endif %}" href="{{ path('contact.index') }}">Contact</a>
           </li>
