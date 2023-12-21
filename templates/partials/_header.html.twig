@@ -1,4 +1,4 @@
-<header>
+<header class="mb-1">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex justify-content-between align-items-center p-0">  
       <a class="navbar-brand" href="{{ path('home.index') }}">
@@ -17,10 +17,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'occasions.index' %}active{% endif %}" href="{{ path('occasions.index') }}">Nos occasions</a>
-          </li>
+          </li> #}
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'contact.index' %}active{% endif %}" href="{{ path('contact.index') }}">Contact</a>
-          </li> #}
+          </li>
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == '' %}active{% endif %}" href="">Espace pro</a>
           </li>

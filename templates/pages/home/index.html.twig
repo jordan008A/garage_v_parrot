@@ -3,13 +3,15 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">{{ message }}</div>
-{% endfor %}
+<div class="container">
+  {% for message in app.flashes('success') %}
+      <div class="alert alert-success">{{ message }}</div>
+  {% endfor %}
 
-{% for message in app.flashes('error') %}
-    <div class="alert alert-danger">{{ message }}</div>
-{% endfor %}
+  {% for message in app.flashes('error') %}
+      <div class="alert alert-danger">{{ message }}</div>
+  {% endfor %}
+</div>
 
 <article class ="article-container">
     <div class="text-center mb-3">
@@ -50,7 +52,7 @@
 
 <div class="container">
   <h1 class="text-center h1">Votre avis compte pour nous !</h1>
-  <form method="post" id="publicReviewsForm" class="public-reviews-form row g-3 fs-4 form-p">
+  <form method="POST" id="publicReviewsForm" class="public-reviews-form row g-3 fs-4 form-p">
     <div class="col-md-6">
       <label for="lastname" class="form-label">Nom</label>
       <input type="text" name="lastname" class="form-control" maxlength="50" placeholder="Nom" required>

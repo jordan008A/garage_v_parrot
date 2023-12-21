@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ServicesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -28,6 +30,14 @@ class Services
     #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
     private ?string $picture;
+
+    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: "service")]
+    private Collection $messages;
+
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,5 +78,31 @@ class Services
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            if ($message->getService() === $this) {
+                $message->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMessages(): Collection
+    {
+        return $this->messages;
     }
 }

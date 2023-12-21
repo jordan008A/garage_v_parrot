@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
 #[ORM\Table(name: "messages")]
@@ -31,6 +32,10 @@ class Messages
     private ?string $email;
 
     #[Assert\NotBlank()]
+    #[AssertPhoneNumber(
+        message: 'Le numéro de téléphone {{ value }} est invalide.',
+        defaultRegion: 'FR',
+    )]
     #[ORM\Column(length: 20)]
     private ?string $phone_number;
 
@@ -38,9 +43,8 @@ class Messages
     #[ORM\Column(length: 255)]
     private ?string $text;
 
-    #[Assert\NotBlank()]
-    #[ORM\Column(length: 255)]
-    private ?string $subject;
+    #[ORM\ManyToOne(targetEntity: Services::class, inversedBy: "messages")]
+    private ?Services $service = null;
 
     #[ORM\ManyToOne(targetEntity: Cars::class, inversedBy: "messages")]
     private ?Cars $car = null;
@@ -110,17 +114,17 @@ class Messages
         return $this;
     }
 
-    public function getSubject(): ?string
-    {
-        return $this->subject;
-    }
+    public function getService(): ?Services
+{
+    return $this->service;
+}
 
-    public function setSubject(string $subject): static
-    {
-        $this->subject = $subject;
+public function setService(?Services $service): self
+{
+    $this->service = $service;
 
-        return $this;
-    }
+    return $this;
+}
 
     public function getCar(): ?Cars
     {

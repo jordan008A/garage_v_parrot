@@ -29,33 +29,28 @@ class HomeController extends AbstractController
             $review->setText($data['comment']);
             $review->setRate(intval($data['ratingValue']));
             $review->setApproved(false); // Par défaut, non approuvé
-            $serviceId = $data['subject'];
 
-            // Récupération du service
-            $service = $servicesRepository->find($serviceId);
-            if ($service) {
+            if (!empty($data['subject'])){
+                // Récupération du service
+                $serviceId = $data['subject'];
+                $service = $servicesRepository->find($serviceId);
                 $review->setService($service);
-            } else {
-                // Gérer le cas où le service n'est pas trouvé
-                $this->addFlash('error', 'Service non trouvé.');
-                return $this->redirectToRoute('home.index');
-            }
-            
-            $errors = $validator->validate($review);
-            if (count($errors) > 0) {
-                // Ajouter des messages d'erreur à la session
-                foreach ($errors as $error) {
+                $errors = $validator->validate($review);
+                if (count($errors) > 0) {
+                  foreach ($errors as $error) {
                     $this->addFlash('error', $error->getMessage());
+                  }
+                } else {
+                  $manager->persist($review);
+                  $manager->flush();
+      
+                  $this->addFlash('success', 'Votre avis a été envoyé avec succès.');
+                  return $this->redirectToRoute('home.index');
                 }
-                return $this->redirectToRoute('home.index');
-            }
-
-            // Enregistrer en base de données
-            $manager->persist($review);
-            $manager->flush();
-
-            $this->addFlash('success', 'Votre avis a été soumis avec succès.');
-            return $this->redirectToRoute('home.index');
+              } else {
+                  // Gérer le cas où le service n'est pas trouvé
+                  $this->addFlash('error', 'Sujet non répertorié.');
+              }
         }
 
         // Afficher la page avec les avis existants
