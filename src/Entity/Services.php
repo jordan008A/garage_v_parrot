@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ServicesRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity('title')]
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 #[ORM\Table(name: "services")]
 class Services
@@ -13,19 +15,19 @@ class Services
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $title = null;
+    private ?string $title;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
+    private ?string $text;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
-    private ?string $picture = null;
+    private ?string $picture;
 
     public function getId(): ?int
     {

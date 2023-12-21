@@ -13,34 +13,34 @@ class Messages
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $firstname = null;
+    private ?string $firstname;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $lastname = null;
+    private ?string $lastname;
 
     #[Assert\NotBlank()]
     #[Assert\Email(
         message: 'L\'email {{ value }} est invalide.',
     )]
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    private ?string $email;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 20)]
-    private ?string $phone_number = null;
+    private ?string $phone_number;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
+    private ?string $text;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
-    private ?string $subject = null;
+    private ?string $subject;
 
     #[ORM\ManyToOne(targetEntity: Cars::class, inversedBy: "messages")]
     private ?Cars $car = null;

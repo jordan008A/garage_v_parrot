@@ -12,17 +12,17 @@ class Pictures
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $picture = null;
+    private ?string $picture;
 
     #[ORM\Column]
     private ?bool $is_primary = false;
 
     #[ORM\ManyToOne(targetEntity: Cars::class, inversedBy: "pictures")]
     #[ORM\JoinColumn(name: "car", referencedColumnName: "id")]
-    private ?Cars $car = null;
+    private ?Cars $car;
 
     public function getId(): ?int
     {

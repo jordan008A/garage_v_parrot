@@ -9,35 +9,36 @@
 <div class="container d-flex justify-content-center">
   <div id="schedules">
     <h1 class="h1 h1-border text-center">Horaires d'ouverture</h1>
-    <div class="jour">
-      <span>Lun. :</span>
-      <input type="text" class="horaire" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
-    </div>
-    <div class="jour">
-      <span>Mar. :</span>
-      <input type="text" class="horaire" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
-    </div>
-    <div class="jour">
-      <span>Mer. :</span>
-      <input type="text" class="horaire" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
-    </div>
-    <div class="jour">
-      <span>Jeu. :</span>
-      <input type="text" class="horaire" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
-    </div>
-    <div class="jour">
-      <span>Ven. :</span>
-      <input type="text" class="horaire" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
-    </div>
-    <div class="jour">
-      <span>Sam. :</span>
-      <input type="text" class="horaire" maxlength="100" value="09:00 - 12:00">
-    </div>
-    <div class="jour">
-      <span>Dim. :</span>
-      <input type="text" class="horaire" maxlength="100" value="Fermé">
-    </div>
-    <div class="d-flex justify-content-around mt-4">
+    <form class="schedule-form">
+      <div class="jour">
+        <span>Lun. :</span>
+        <input type="text" class="horaire lundi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+      </div>
+      <div class="jour">
+        <span>Mar. :</span>
+        <input type="text" class="horaire mardi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+      </div>
+      <div class="jour">
+        <span>Mer. :</span>
+        <input type="text" class="horaire mercredi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+      </div>
+      <div class="jour">
+        <span>Jeu. :</span>
+        <input type="text" class="horaire jeudi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+      </div>
+      <div class="jour">
+        <span>Ven. :</span>
+        <input type="text" class="horaire vendredi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+      </div>
+      <div class="jour">
+        <span>Sam. :</span>
+        <input type="text" class="horaire samedi" maxlength="100" value="09:00 - 12:00">
+      </div>
+      <div class="jour">
+        <span>Dim. :</span>
+        <input type="text" class="horaire dimanche" maxlength="100" value="Fermé">
+      </div>
+      <div class="d-flex justify-content-around mt-4">
         <div>
           <button class="btn-update btn btn-sm">Annuler</button>
         </div>
@@ -45,6 +46,7 @@
           <button class="btn-create btn btn-sm">Valider</button>
         </div>
       </div>
+    </form>
   </div>
 </div>
 

@@ -18,35 +18,35 @@ class Cars
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private ?Uuid $id = null;
+    private ?Uuid $id;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $title = null;
+    private ?string $title;
 
     #[Assert\NotNull()]
     #[ORM\Column]
-    private ?int $price = null;
+    private ?int $price;
 
     #[Assert\NotBlank()]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $year = null;
+    private ?\DateTimeInterface $year;
 
     #[Assert\NotNull()]
     #[ORM\Column]
-    private ?int $mileage = null;
+    private ?int $mileage;
 
     #[Assert\NotNull()]
     #[ORM\Column]
-    private ?int $puissance_din = null;
+    private ?int $puissance_din;
 
     #[Assert\NotNull()]
     #[ORM\Column]
-    private ?int $puissance_fiscale = null;
+    private ?int $puissance_fiscale;
 
     #[Assert\NotNull()]
     #[ORM\Column]
-    private ?bool $isAutomatically = false;
+    private ?bool $isAutomatically;
 
     #[ORM\ManyToOne(targetEntity: MotorTechnologies::class)]
     #[ORM\JoinColumn(name: "motor_technologie", referencedColumnName: "id")]

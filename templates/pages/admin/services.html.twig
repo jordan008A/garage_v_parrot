@@ -7,7 +7,7 @@
 {% include "partials/_header-admin.html.twig" %}
 
   <div class="container mt-4">
-    <form id="adminForm">
+    <form class="service-form" id="adminForm">
       <div class="mb-3">
         <label for="titre" class="form-label">Titre :</label>
         <input type="text" class="form-control" maxlength="50">
@@ -48,46 +48,32 @@
       </thead>
       <!-- Contenu du tableau -->
       <tbody>
+      {%for service in services %}
         <tr>
-          <td>Réparation de mécanique générale</td>
-          <td><img class="service-image" src="{{ asset('assets/img/services/mecanique.jpg') }}"></td>
+          <td>{{service.title}}</td>
+          <td><img class="service-image" src="{{ asset('assets/img/services/{{service.picture}}') }}"></td>
           <td>
-          Notre garage offre une expertise pointue en réparations mécaniques, 
-          résolvant efficacement les problèmes liés au moteur, à la transmission 
-          et à d'autres composants essentiels. Nous diagnostiquons avec précision 
-          et réparons rapidement pour vous remettre sur la route en toute sécurité.
+          {{service.text}}
           </td>
           <td>
             <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
             <button class="btn-edit"><i class="fas fa-edit"></i></button>
           </td>
         </tr>
-        <tr>
-          <td>Réparation et remplacement des pneus</td>
-          <td><img class="service-image" src="{{ asset('assets/img/services/pneus.jpg') }}"></td>
-          <td>
-          Notre garage offre une expertise pointue en réparations mécaniques, 
-          résolvant efficacement les problèmes liés au moteur, à la transmission 
-          et à d'autres composants essentiels. Nous diagnostiquons avec précision 
-          et réparons rapidement pour vous remettre sur la route en toute sécurité.
-          </td>
-          <td>
-            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-            <button class="btn-edit"><i class="fas fa-edit"></i></button>
-          </td>
-        </tr>
+      {%endfor%}
       </tbody>
     </table>
     <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
+    {%for service in services %}
       <div id="serviceCard" class="card">
         <div class="card-body">
           <div class="d-flex justify-content-center mb-2">
-            <h5 class="card-title">Réparation de mécanique générale</h5>
+            <h5 class="card-title">{{service.title}}</h5>
           </div>
           <div class="d-flex flex-colum justify-content-around">
             <div class="mt-2 me-2">
-              <img class="service-image" src="{{ asset('assets/img/services/mecanique.jpg') }}">
+              <img class="service-image" src="{{ asset('assets/img/services/{{service.picture}}') }}">
             </div>
             <div class="d-flex flex-column justify-content-center">
               <div class="mb-2">
@@ -100,14 +86,12 @@
           </div>
           <div class="d-flex justify-content-center my-2">
             <p class="card-text mx-2">
-            Notre garage offre une expertise pointue en réparations mécaniques, 
-            résolvant efficacement les problèmes liés au moteur, à la transmission 
-            et à d'autres composants essentiels. Nous diagnostiquons avec précision 
-            et réparons rapidement pour vous remettre sur la route en toute sécurité.
+            {{service.text}}
             </p>
           </div>
         </div>
       </div>
+    {%endfor%}
     </div>
   </div>
 

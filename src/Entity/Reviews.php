@@ -13,19 +13,19 @@ class Reviews
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $firstname = null;
+    private ?string $firstname;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $lastname = null;
+    private ?string $lastname;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 175)]
-    private ?string $text = null;
+    private ?string $text;
 
     #[Assert\NotNull()]
     #[Assert\Range(
@@ -33,12 +33,12 @@ class Reviews
         max: 5,
     )]
     #[ORM\Column]
-    private ?int $rate = null;
+    private ?int $rate;
 
     #[Assert\NotNull()]
     #[ORM\ManyToOne(targetEntity: Services::class)]
     #[ORM\JoinColumn(name: "service_id", referencedColumnName: "id")]
-    private ?Services $service = null;
+    private ?Services $service;
 
     #[Assert\NotNull()]
     #[ORM\Column]

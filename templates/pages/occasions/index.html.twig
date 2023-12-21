@@ -41,74 +41,19 @@
             <!-- Car cards -->
             <div class="row justify-content-around">
                 <!-- Replace with data from your backend -->
-                {# {% for car in cars %} #}
+                {% for car in cars %}
                 <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-1-1.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
+                    <img src="{{ asset('assets/img/voitures/{{picture.isPrimary}}') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
                     <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
+                        <p class="card-title text-center fs-4">{{car.title}}</p>
+                        <p class="card-text text-center">marque : {{car.brand}}</p>
+                        <p class="card-price text-center fs-4">{{car.price}}€</p>
+                        <p class="card-text text-center">Année: {{car.year}}</p>
+                        <p class="card-text text-center">{{car.mileage}}km</p>
+                        <a href="{{car.id}}" class="btn button-p d-block">Plus de détails</a>
                     </div>
                 </div>
-                <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-1-2.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
-                    <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
-                    </div>
-                </div>
-                <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-1-3.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
-                    <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
-                    </div>
-                </div>
-                <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-2-1.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
-                    <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
-                    </div>
-                </div>
-                <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-3-1.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
-                    <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
-                    </div>
-                </div>
-                <div class="col-md-5 my-3 p-0 card">
-                    <img src="{{ asset('assets/img/voitures/voiture-4-1.jpg') }}" class="card-img-top w-100 img-fluid m-0 p-0 dynamic-height" alt="Car Image">
-                    <div class="card-body">
-                        <p class="card-title text-center fs-4">Golf VII GTI</p>
-                        <p class="card-text text-center">marque : Volkswagen</p>
-                        <p class="card-price text-center fs-4">27000€</p>
-                        <p class="card-text text-center">Année: 2022</p>
-                        <p class="card-text text-center">24000km</p>
-                        <a href="" class="btn button-p d-block">Plus de détails</a>
-                    </div>
-                </div>
-                {# {% endfor %} #}
+                {% endfor %}
             </div>
         </div>
     </main>

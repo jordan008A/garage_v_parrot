@@ -21,6 +21,19 @@ class ReviewsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reviews::class);
     }
 
+    /**
+     * @return Reviews[] Returns an array of Reviews objects
+     */
+    public function findApprovedReviews(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.approved = :val')
+            ->setParameter('val', true)
+            ->orderBy('r.id', 'DESC') // ou tout autre ordre si nécessaire
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Reviews[] Returns an array of Reviews objects
 //     */

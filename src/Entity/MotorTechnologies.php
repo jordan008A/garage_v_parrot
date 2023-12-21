@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MotorTechnologiesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MotorTechnologiesRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('property')]
 #[ORM\Entity(repositoryClass: MotorTechnologiesRepository::class)]
 #[ORM\Table(name: "motor_technologies")]
 class MotorTechnologies
@@ -13,11 +15,11 @@ class MotorTechnologies
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[Assert\NotBlank()]
-    #[ORM\Column(length: 30, unique:true)]
-    private ?string $property = null;
+    #[ORM\Column(length: 30)]
+    private ?string $property;
 
     public function getId(): ?int
     {

@@ -7,7 +7,7 @@
 {% include "partials/_header-admin.html.twig" %}
 
   <div class="container mt-4">
-    <form id="adminForm">
+    <form class="user-form" id="adminForm">
       <div class="mb-3">
         <label for="name" class="form-label">Nom</label>
         <input type="text" class="form-control" maxlength="50">
@@ -50,30 +50,34 @@
       </thead>
       <!-- Contenu du tableau -->
       <tbody>
+      {%for user in users%}
         <tr>
-          <td>Jackson</td>
-          <td>Michael</td>
-          <td>mjackson@example.com</td>
-          <td>********</td>
-          <td>Admin</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.firstname}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
+          <td>{{ (user.isAdmin == true) ? 'Admin' : 'User' }}</td>
           <td>
             <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
             <button class="btn-edit"><i class="fas fa-edit"></i></button>
           </td>
+        </tr>
+      {%endfor%}
       </tbody>
     </table>
     <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
+    {%for user in users%}
       <div id="userCard" class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="card-title">Vincent.P</h5>
-            <span class="badge bg-primary">Admin</span>
+            <span class="badge bg-primary">{{ (user.isAdmin == true) ? 'Admin' : 'User' }}</span>
           </div>
           <div class="d-flex flex-colum justify-content-between">
             <div class="mt-2">
-              <p class="card-text">Email: vincent@parrot.fr</p>
-              <p class="card-text">Mot de passe: 6hN3f3p</p>
+              <p class="card-text">Email: {{user.email}}</p>
+              <p class="card-text">Mot de passe: {{user.password}}</p>
             </div>
             <div class="d-flex flex-column">
               <div class="mb-2">
@@ -86,6 +90,7 @@
           </div>
         </div>
       </div>
+    {%endfor%}
     </div>
   </div> 
 {% endblock %}
