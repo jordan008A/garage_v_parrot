@@ -51,8 +51,8 @@
 
 
 <div class="container">
-  <h1 class="text-center h1">Votre avis compte pour nous !</h1>
-  <form method="POST" id="publicReviewsForm" class="public-reviews-form row g-3 fs-4 form-p">
+  <h1 class="text-center h1 mb-4">Votre avis compte pour nous !</h1>
+  <form method="POST" class="public-review-form reviews-form row g-3 fs-4 form-p">
     <div class="col-md-6">
       <label for="lastname" class="form-label">Nom</label>
       <input type="text" name="lastname" class="form-control" maxlength="50" placeholder="Nom" required>
@@ -86,16 +86,18 @@
       <input type="hidden" name="ratingValue" id="ratingValue">
     </div>
     <div class="col-md-6 d-flex justify-content-center">
-      <input type="hidden" name="_csrf_token" value="{{ csrf_token('public-reviews-form') }}">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token('public-review-form') }}">
       <button type="submit" class="btn button-p">Soumettre</button>
     </div>
   </form>
 </div>
 
+{% set hasReviews = false %}
 <div class="container mt-5">
   <div id="reviewCarousel" class="carousel slide" data-bs-ride="true">
     <div class="carousel-inner">
       {% for review in reviews %}
+      {% set hasReviews = true %}
       <div class="carousel-item {{ loop.first ? 'active' : '' }}">
         <div class="carousel-content custom-review-carousel">
           <div class="person-info">
@@ -129,6 +131,9 @@
     </button>
   </div>
 </div>
+{% if not hasReviews %}
+  <h5 class="text-center">Aucun avis pour l'instant.</h5>
+{% endif %}
 <script src="{{ asset('assets/javascript/saveStarsValue.js') }}"></script>
 <script src="{{ asset('assets/javascript/limitCharacters175.js') }}"></script>
 {% endblock %}

@@ -20,7 +20,7 @@
         {% block body %}{% endblock %}
 
         {% block footer %}
-        {% include "partials/_footer.html.twig" %}
+        {% include 'partials/_footer.html.twig' with {'schedules': footerData} %}
         {% endblock %}
         
         {% block javascripts %}

@@ -5,7 +5,14 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
 
+    images_directory: '%kernel.project_dir%/public/assets/img/uploads'
+
 services:
+
+    App\Service\FooterService:
+            arguments:
+                $schedulesRepository: '@App\Repository\SchedulesRepository'
+                
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

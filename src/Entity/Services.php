@@ -31,12 +31,16 @@ class Services
     #[ORM\Column(length: 255)]
     private ?string $picture;
 
-    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: "service")]
+    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: "service", cascade: ["remove"])]
     private Collection $messages;
+
+    #[ORM\OneToMany(targetEntity: Reviews::class, mappedBy: "service", cascade: ["remove"])]
+    private Collection $reviews;
 
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,5 +108,10 @@ class Services
     public function getMessages(): Collection
     {
         return $this->messages;
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
     }
 }

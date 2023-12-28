@@ -1,9 +1,13 @@
-document.getElementById('publicReviewsForm').addEventListener('submit', function(event) {
-  let ratingValue = document.getElementById('ratingValue').value;
-  if (!ratingValue || ratingValue === '0') {
+const forms = document.querySelectorAll('.reviews-form');
+
+forms.forEach(form => {
+  form.addEventListener('submit', function(event) {
+    let ratingValue = form.querySelector('.rating-value').value;
+    if (!ratingValue || ratingValue === '0') {
       alert('Veuillez attribuer une note.');
       event.preventDefault(); // Empêcher la soumission du formulaire
-  }
+    }
+  });
 });
 // Save the value of the rating and managing the .active class
 const stars = document.querySelectorAll('.rating .star');

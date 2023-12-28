@@ -6,7 +6,7 @@
   color: #262526;
 }
 
-.admin-active {
+.active-admin {
   color: #262526;
   text-decoration: underline;
   font-weight: 500;
@@ -46,6 +46,43 @@
   margin: 5px;
 }
 
+.admin-list table {
+  color: #262526;
+  font-size: 14px;
+}
+
+.admin-list {
+  padding: 24px;
+}
+
+.btn-stop {
+  color: #D92332;
+}
+
+.btn-stop:hover {
+  color: #D92332;
+  background-color: rgba(38, 37, 38, 0.3);
+}
+
+.btn-create, .btn-update {
+  color: #ffffff;
+  background-color: #D92332;
+  box-shadow: 2px 2px 8px rgba(38, 37, 38, 0.5);
+}
+
+.btn-create:hover, .btn-update:hover {
+  color: #ffffff;
+  background-color: #262526;
+  box-shadow: 4px 4px 12px rgba(38, 37, 38, 0.7);
+}
+
+.btn-stop, .btn-create, .btn-update {
+  border: none;
+  font-size: 24px;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
 @media screen and (max-width: 992px) {
   #adminForm {
     width: 70%;
@@ -68,6 +105,10 @@
 
   #adminForm {
     width: 90%;
+  }
+
+  .btn-stop, .btn-create, .btn-update {
+    font-size: 20px;
   }
 }
 
@@ -104,5 +145,15 @@
   #adminForm select,
 #adminForm input::placeholder {
   font-size: 12px;
+}
+
+.admin-list {
+  padding: 16px 0px;
+}
+
+.btn-stop, .btn-create, .btn-update {
+  font-size: 16px;
+  padding: 3px 9px;
+  border-radius: 6px;
 }
 }

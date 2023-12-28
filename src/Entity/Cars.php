@@ -30,10 +30,9 @@ class Cars
     #[Assert\Type(type: 'digit', message: "L'année doit être un nombre.")]
     #[Assert\Length(min: 4, max: 4, exactMessage: "L'année doit être composée de 4 chiffres.")]
     #[Assert\Range(
-        min: 1770, 
-        max: "this_year", 
-        minMessage: "L'année doit être au minimum 1770.", 
-        maxMessage: "L'année ne peut pas être postérieure à l'année actuelle."
+        min: 1770,
+        max: "this_year",
+        notInRangeMessage: "L'année doit être comprise entre 1770 et l'année actuelle."
     )]
     #[ORM\Column(type: 'string', length: 4)]
     private ?string $year;
@@ -62,10 +61,10 @@ class Cars
     #[ORM\JoinColumn(name: "brand", referencedColumnName: "id")]
     private ?Brands $brand = null;
 
-    #[ORM\OneToMany(targetEntity: Pictures::class, mappedBy: "car")]
+    #[ORM\OneToMany(targetEntity: Pictures::class, mappedBy: "car", cascade: ["remove"])]
     private Collection $pictures;
 
-    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: "car")]
+    #[ORM\OneToMany(targetEntity: Messages::class, mappedBy: "car", cascade: ["remove"])]
     private Collection $messages;
 
     public function __construct()
@@ -187,7 +186,6 @@ class Cars
         return $this;
     }
 
-    // Méthodes pour ajouter une image à la voiture
     public function addPicture(Pictures $picture): self
     {
         if (!$this->pictures->contains($picture)) {
@@ -198,7 +196,6 @@ class Cars
         return $this;
     }
 
-    // Méthodes pour retirer une image de la voiture
     public function removePicture(Pictures $picture): self
     {
         if ($this->pictures->removeElement($picture)) {

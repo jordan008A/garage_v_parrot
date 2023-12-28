@@ -24,14 +24,17 @@
   opacity: 80%;
 }
 
-#imagePreview {
+#imagePreview, .current-image {
   width: 300px;
   height: 210px;
   margin: 20px auto;
+}
+
+#imagePreview {
   display: none;
 }
 
-#imagePreview img {
+#imagePreview img, .current-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -63,14 +66,14 @@
 }
   
 @media screen and (max-width: 576px) {
-  #imagePreview {
+  #imagePreview, .current-image {
     width: 150px;
     height: 105px;
     margin: 5px auto;
     display: none;
   }
     
-  #imagePreview img {
+  #imagePreview img, .current-image img {
     border-radius: 8px;
   }
     

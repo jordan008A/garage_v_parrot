@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services - Modifier{% endblock %}
+
+{% block body %}
+
+{% include "partials/_header-admin.html.twig" %}
+
+  <div class="container mt-4">
+    <form class="service-form update-service-form" action="{{ path('services.update', {'id': service.id}) }}" method="post" id="adminForm" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre :</label>
+        <input type="text" name="title" class="form-control" maxlength="50" value="{{ service.title }}">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Contenu :</label>
+        <textarea type="text" name="content" class="form-control" id="area400" rows="5" placeholder="Max 400 caractères">
+        {{ service.text }}</textarea>
+        <p id="lengthValue400">0 / 400 caractères</p>
+      </div>
+      <div class="mb-3 select-image">
+        {% if service.picture %}
+          <p>Image Actuelle :</p>
+          <div class="current-image">
+          <img src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="Image actuelle" class="img-thumbnail">
+          </div>
+        {% else %}
+          <p>Pas d'image actuellement.</p>
+        {% endif %}
+        <p>Nouvelle image :</p>
+        <label for="imageInput" class="custom-file-upload" id="customFileLabel">
+          Choisir une image
+        </label>
+        <input type="file" id="imageInput" name="image" accept=".jpg, .jpeg, .png">
+        <div id="imagePreview"></div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <div>
+          <a href="{{ path('services.admin.manage') }}" class="btn-stop btn btn-sm">Annuler</a>
+        </div>
+        <div>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('update-service-form') }}">
+          <button class="btn-update btn btn-sm">Modifier</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ asset('assets/javascript/limitCharacters400.js') }}"></script>
+    <script src="{{ asset('assets/javascript/servicePreview.js') }}"></script>
+{% endblock %}

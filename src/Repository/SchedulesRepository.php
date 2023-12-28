@@ -21,6 +21,23 @@ class SchedulesRepository extends ServiceEntityRepository
         parent::__construct($registry, Schedules::class);
     }
 
+    public function findSchedulesOrdered()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('CASE 
+                WHEN s.day = \'Lundi\' THEN 1
+                WHEN s.day = \'Mardi\' THEN 2
+                WHEN s.day = \'Mercredi\' THEN 3
+                WHEN s.day = \'Jeudi\' THEN 4
+                WHEN s.day = \'Vendredi\' THEN 5
+                WHEN s.day = \'Samedi\' THEN 6
+                WHEN s.day = \'Dimanche\' THEN 7
+                ELSE 8
+            END', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Schedules[] Returns an array of Schedules objects
 //     */

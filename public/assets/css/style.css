@@ -74,34 +74,6 @@ h1, h2, h3, h4, h5 {
   border-radius: 0;
 }
 
-.btn-update {
-  color: #D92332;
-}
-
-.btn-update:hover {
-  color: #D92332;
-  background-color: rgba(38, 37, 38, 0.3);
-}
-
-.btn-create {
-  color: #ffffff;
-  background-color: #D92332;
-  box-shadow: 2px 2px 8px rgba(38, 37, 38, 0.5);
-}
-
-.btn-create:hover {
-  color: #ffffff;
-  background-color: #262526;
-  box-shadow: 4px 4px 12px rgba(38, 37, 38, 0.7);
-}
-
-.btn-update, .btn-create {
-  border: none;
-  font-size: 24px;
-  padding: 4px 12px;
-  border-radius: 8px;
-}
-
 @media screen and (max-width: 992px) {
   .h1 {
     font-size: 24px;
@@ -128,10 +100,6 @@ h1, h2, h3, h4, h5 {
   .article-img, .article-text {
     width: 60%;
   }
-
-  .btn-update, .btn-create {
-    font-size: 20px;
-  }
 }
 
 @media screen and (max-width: 576px) {
@@ -139,12 +107,6 @@ h1, h2, h3, h4, h5 {
     border-radius: 8px;
     padding: 5px 10px 5px 10px;
     font-size: 20px;
-  }
-
-  .btn-update, .btn-create {
-    font-size: 16px;
-    padding: 3px 9px;
-    border-radius: 6px;
   }
 
   .article-text {

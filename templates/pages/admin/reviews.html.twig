@@ -7,26 +7,28 @@
 {% include "partials/_header-admin.html.twig" %}
 
   <div class="container mt-4">
-    <form class="review-form" id="adminForm">
+    <form class="admin-review-form reviews-form" action="{{ path('reviews.create') }}" id="adminForm" method="POST">
       <div class="mb-3">
-        <label for="name" class="form-label">Nom</label>
-        <input type="text" class="form-control" maxlength="50">
+        <label for="lastname" class="form-label">Nom</label>
+        <input type="text" name="lastname" class="form-control" maxlength="50">
       </div>
       <div class="mb-3">
-        <label for="firstName" class="form-label">Prénom</label>
-        <input type="text" class="form-control" maxlength="50">
+        <label for="firstname" class="form-label">Prénom</label>
+        <input type="text" name="firstname" class="form-control" maxlength="50">
       </div>
       <div class="mb-3">
         <label for="subject" class="form-label">Sujet</label>
-        <select class="form-select">
+        <select name="subject" class="form-select">
           <option selected disabled>Sélectionner un sujet...</option>
-          <option>...</option>
+          {% for service in services %}
+          <option value="{{ service.id }}">{{ service.title }}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="mb-3">
         <div class="mb-3">
         <label for="content" class="form-label">Contenu :</label>
-        <textarea type="text" class="form-control" id="area175" rows="5" placeholder="Max 175 caractères"></textarea>
+        <textarea type="text" name="comment" class="form-control" id="area175" rows="5" placeholder="Max 175 caractères"></textarea>
         <p id="lengthValue175">0 / 175 caractères</p>
       </div>
       <div class="col-md-12 mb-2 d-flex align-items-center justify-content-center">
@@ -37,54 +39,54 @@
           <span class="star" data-rating="4">&#9733;</span>
           <span class="star" data-rating="5">&#9733;</span>
         </div>
-        <input type="hidden" name="rating" id="ratingValue">
+        <input type="hidden" name="ratingValue" id="ratingValue">
       </div>
       <div class="d-flex justify-content-around">
         <div>
-          <button class="btn-update btn btn-sm">Modifier</button>
+          <a href="reviews.admin.index" class="btn-stop btn btn-sm">Annuler</a>
         </div>
         <div>
-          <button class="btn-create btn btn-sm">Créer</button>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('admin-review-form') }}">
+          <button class="btn-create btn btn-sm" type="submit">Créer</button>
         </div>
       </div>
     </form>
   </div>
   
   <div class="container mt-5">
-    <h1 class="h1">Avis postés</h1>
-    <div id="postedReviewCarousel" class="carousel slide" data-bs-ride="true">
-      <div class="carousel-inner">
-      {%for review in reviews%}
-      {%if review.isApproved == true %}
-        <div class="carousel-item">
-          <div class="carousel-content custom-review-carousel">
-            <div class="person-info">
-              <p>John.D</p>
-              <div class="stars">
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
+  <h1 class="h1">Avis postés</h1>
+  <div id="postedReviewCarousel" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-inner">
+      {% set hasPostedReviews = false %}
+      {% for approvedReview in approvedReviews %}
+          {% set hasPostedReviews = true %}
+          <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+              <div class="carousel-content custom-review-carousel">
+                <div class="person-info">
+                  <p>{{ approvedReview.firstname }}.{{ approvedReview.lastname|first|upper }}</p>
+                  <div class="stars">
+                    {% for i in 1..approvedReview.rate %}
+                      <span class="rate">&#9733;</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="subject d-flex flex-row justify-content-between">
+                  <p class="mx-2 my-auto">{{approvedReview.service.title}}</p>
+                  <div>
+                    <form action="{{ path('reviews.delete', {'id': approvedReview.id}) }}" method="post">
+                      <button type="submit" class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                  </div>
+                </div>
+                <div class="text">
+                  <p>"{{approvedReview.text}}"</p>
+                </div>
               </div>
             </div>
-            <div class="subject d-flex flex-row justify-content-between">
-              <p class="mx-2 my-auto">Entretien périodique</p>
-              <div>
-                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
-              </div>
-            </div>
-            <div class="text">
-              <p>
-              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
-              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
-              </p>
-            </div>
-          </div>
-        </div>
-      {%else%}
-      Aucun avis postés
-      {%endfor%}
+      {% endfor %}
+      {% if not hasPostedReviews %}
+        <h5 class="text-center">Aucun avis posté</h5>
+      {% endif %}
       </div>
       <!-- Contrôles du carrousel -->
       <button class="carousel-control-prev" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="prev">
@@ -97,40 +99,41 @@
       </button>
     </div>
     <h1 class="h1">Avis à valider</h1>
-    <div id="validateReviewCarousel" class="carousel slide" data-bs-ride="true">
-      <div class="carousel-inner">
-      {%for review in reviews%}
-      {%if review.isApproved == false %}
-        <div class="carousel-item active">
-          <div class="carousel-content custom-review-carousel">
-            <div class="person-info">
-              <p>John.Dfffffff</p>
-              <div class="stars">
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
-                <span class="rate">&#9733;</span>
+  <div id="validateReviewCarousel" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-inner">
+      {% set hasValidatedReviews = false %}
+      {% for unapprovedReview in unapprovedReviews %}
+          {% set hasValidatedReviews = true %}
+          <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+              <div class="carousel-content custom-review-carousel">
+                <div class="person-info">
+                  <p>{{ unapprovedReview.firstname }}.{{ unapprovedReview.lastname|first|upper }}</p>
+                  <div class="stars">
+                    {% for i in 1..unapprovedReview.rate %}
+                      <span class="rate">&#9733;</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="subject d-flex flex-row justify-content-between">
+                  <p class="mx-2 my-auto">{{unapprovedReview.service.title}}</p>
+                  <div>
+                    <form action="{{ path('reviews.validate', {'id': unapprovedReview.id}) }}" method="post">
+                      <button type="submit" class="btn-validate-review btn btn-sm"><i class="fa-regular fa-circle-check"></i></button>
+                    </form>
+                    <form action="{{ path('reviews.delete', {'id': unapprovedReview.id}) }}" method="post">
+                      <button type="submit" class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                  </div>
+                </div>
+                <div class="text">
+                  <p>"{{unapprovedReview.text}}"</p>
+                </div>
               </div>
             </div>
-            <div class="subject d-flex flex-row justify-content-between">
-              <p class="mx-2 my-auto">Entretien périodique</p>
-              <div>
-                <button class="btn-validate-review btn btn-sm"><i class="far fa-circle-check"></i></button>
-                <button class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
-              </div>
-            </div>
-            <div class="text">
-              <p>
-              "Service d'entretien parfaitement exécuté. Vidange et contrôle complets sans surprise. 
-              Des conseils utiles pour garder ma voiture en bon état. Je reviendrai sans hésiter !"
-              </p>
-            </div>
-          </div>
-        </div>
-      {%else%}
-      Aucun avis à valider
-      {%endfor%}
+      {% endfor %}
+      {% if not hasValidatedReviews %}
+        <h5 class="text-center">Aucun avis à valider.</h5>
+      {% endif %}
       </div>
       <!-- Contrôles du carrousel -->
       <button class="carousel-control-prev" type="button" data-bs-target="#validateReviewCarousel" data-bs-slide="prev">

@@ -1,11 +1,23 @@
 <nav class="nav-admin">
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'contact.index' %}active-admin{% endif %}" href="#">Services</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'messages.admin.manage' %}active-admin{% endif %}" href="{{ path('messages.admin.manage') }}">Messages</a>
+    <span>||</span>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'services.admin.manage' %}active-admin{% endif %}" href="{{ path('services.admin.manage') }}">Services</a>
     <span>||</span>
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Utilisateurs</a>
     <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Horaires</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'schedules.admin.manage' %}active-admin{% endif %}" href="{{ path('schedules.admin.manage') }}">Horaires</a>
     <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Avis client</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'reviews.admin.index' %}active-admin{% endif %}" href="{{ path('reviews.admin.index') }}">Avis client</a>
     <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Voitures</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'voitures.admin.manage' %}active-admin{% endif %}" href="{{ path('voitures.admin.manage') }}">Voitures</a>
   </nav>
+
+  <div class="container">
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+      <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+  </div>

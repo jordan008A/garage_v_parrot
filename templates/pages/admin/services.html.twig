@@ -7,14 +7,14 @@
 {% include "partials/_header-admin.html.twig" %}
 
   <div class="container mt-4">
-    <form class="service-form" id="adminForm">
+    <form class="service-form create-service-form" action="{{ path('services.create') }}" method="post" id="adminForm" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="titre" class="form-label">Titre :</label>
-        <input type="text" class="form-control" maxlength="50">
+        <input type="text" name="title" class="form-control" maxlength="50">
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Contenu :</label>
-        <textarea type="text" class="form-control" id="area400" rows="5" placeholder="Max 400 caractères"></textarea>
+        <textarea type="text" name="content" class="form-control" id="area400" rows="5" placeholder="Max 400 caractères"></textarea>
         <p id="lengthValue400">0 / 400 caractères</p>
       </div>
       <div class="mb-3 select-image">
@@ -26,16 +26,17 @@
       </div>
       <div class="d-flex justify-content-around">
         <div>
-          <button class="btn-update btn btn-sm">Modifier</button>
+          <a href="{{ path('services.admin.manage') }}" class="btn-stop btn btn-sm">Annuler</a>
         </div>
         <div>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('create-service-form') }}">
           <button class="btn-create btn btn-sm">Créer</button>
         </div>
       </div>
     </form>
   </div>
 
-  <div class="service-list mt-4 table-responsive">
+  <div class="admin-list mt-4 table-responsive">
     <table class="table table-sm d-none d-md-table">
       <!-- Entête du tableau -->
       <thead>
@@ -48,53 +49,54 @@
       </thead>
       <!-- Contenu du tableau -->
       <tbody>
-      {%for service in services %}
+      {% for service in services %}
         <tr>
-          <td>{{service.title}}</td>
-          <td><img class="service-image" src="{{ asset('assets/img/services/{{service.picture}}') }}"></td>
+          <td>{{ service.title }}</td>
+          <td><img class="service-image" src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}"></td>
+          <td>{{ service.text }}</td>
           <td>
-          {{service.text}}
-          </td>
-          <td>
-            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+            <form action="{{ path('services.delete', {'id': service.id}) }}" method="post">
+              <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+            </form>
+            <button class="btn-edit" onclick="location.href='{{ path('services.edit', {'id': service.id}) }}'"><i class="fas fa-edit"></i></button>
           </td>
         </tr>
-      {%endfor%}
+      {% endfor %}
       </tbody>
     </table>
     <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
-    {%for service in services %}
+    {% for service in services %}
       <div id="serviceCard" class="card">
         <div class="card-body">
           <div class="d-flex justify-content-center mb-2">
-            <h5 class="card-title">{{service.title}}</h5>
+            <h5 class="card-title">{{ service.title }}</h5>
           </div>
           <div class="d-flex flex-colum justify-content-around">
             <div class="mt-2 me-2">
-              <img class="service-image" src="{{ asset('assets/img/services/{{service.picture}}') }}">
+              <img class="service-image" src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}">
             </div>
             <div class="d-flex flex-column justify-content-center">
               <div class="mb-2">
-                <button class="btn-edit btn btn-sm"><i class="fas fa-edit"></i></button>
+                <button class="btn-edit btn btn-sm" onclick="location.href='{{ path('services.edit', {'id': service.id}) }}'"><i class="fas fa-edit"></i></button>
               </div>
               <div>
-                <button class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                <form action="{{ path('services.delete', {'id': service.id}) }}" method="post">
+                  <button type="submit" class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                </form>
               </div>
             </div>
           </div>
           <div class="d-flex justify-content-center my-2">
-            <p class="card-text mx-2">
-            {{service.text}}
-            </p>
+            <p class="card-text mx-2">{{ service.text }}</p>
           </div>
         </div>
       </div>
-    {%endfor%}
+    {% endfor %}
     </div>
   </div>
 
   <script src="{{ asset('assets/javascript/limitCharacters400.js') }}"></script>
   <script src="{{ asset('assets/javascript/servicePreview.js') }}"></script>
+  <script src="{{ asset('assets/javascript/deleteConfirm.js') }}"></script>
 {% endblock %}

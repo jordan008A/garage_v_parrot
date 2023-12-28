@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Messages{% endblock %}
+
+{% block body %}
+
+{% include "partials/_header-admin.html.twig" %}
+
+  <div class="admin-list mt-4 table-responsive">
+    {% if messages|length == 0 %}
+      <p class="text-center">Aucun message n'a été trouvé.</p>
+    {% else %}
+    <table class="table table-sm d-none d-md-table">
+
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col">Sujet</th>
+          <th scope="col">Texte</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for message in messages %}
+          <tr>
+            <td>{{ message.lastname }}</td>
+            <td>{{ message.firstname }}</td>
+            <td>{{ message.email }}</td>
+            <td>{{ message.phone }}</td>
+            <td>{{ message.subject }}</td>
+            <td>{{ message.text }}</td>
+            <td>
+              <form action="{{ path('messages.delete', {'id': message.id}) }}" method="post">
+                <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- Pour les écrans plus petits -->
+    <div class="card-deck d-md-none">
+      {% for message in messages %}
+        <div id="messageCard" class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+              <h5 class="card-title">{{ message.lastname }} {{ message.firstname }}</h5>
+            </div>
+            <div class="d-flex flex-colum justify-content-between">
+              <div class="mt-2">
+                <p class="card-text">Email: {{ message.email }}</p>
+                <p class="card-text">Téléphone: {{ message.phone }}</p>
+              </div>
+              <div class="d-flex flex-column my-auto">
+                <form action="{{ path('messages.delete', {'id': message.id}) }}" method="post">
+                  <button type="submit" class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+              <h5 class="card-title">{{ message.subject }}</h5>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mb-2">
+              <p class="card-text">{{ message.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <script src="{{ asset('assets/javascript/deleteConfirm.js') }}"></script>
+{% endblock %}

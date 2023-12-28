@@ -9,46 +9,46 @@
 <div class="container d-flex justify-content-center">
   <div id="schedules">
     <h1 class="h1 h1-border text-center">Horaires d'ouverture</h1>
-    <form class="schedule-form">
+    <form class="schedule-form" action="{{ path('schedules.update') }}" method="post">
       <div class="jour">
         <span>Lun. :</span>
-        <input type="text" class="horaire lundi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+        <input type="text" name="lundi" class="horaire" maxlength="100" value="{{ scheduleData.lundi }}">
       </div>
       <div class="jour">
         <span>Mar. :</span>
-        <input type="text" class="horaire mardi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+        <input type="text" name="mardi" class="horaire" maxlength="100" value="{{ scheduleData.mardi }}">
       </div>
       <div class="jour">
         <span>Mer. :</span>
-        <input type="text" class="horaire mercredi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+        <input type="text" name="mercredi" class="horaire" maxlength="100" value="{{ scheduleData.mercredi }}">
       </div>
       <div class="jour">
         <span>Jeu. :</span>
-        <input type="text" class="horaire jeudi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+        <input type="text" name="jeudi" class="horaire" maxlength="100" value="{{ scheduleData.jeudi }}">
       </div>
       <div class="jour">
         <span>Ven. :</span>
-        <input type="text" class="horaire vendredi" maxlength="100" value="08:45 - 12:00 ; 13:30 - 17:15">
+        <input type="text" name="vendredi" class="horaire" maxlength="100" value="{{ scheduleData.vendredi }}">
       </div>
       <div class="jour">
         <span>Sam. :</span>
-        <input type="text" class="horaire samedi" maxlength="100" value="09:00 - 12:00">
+        <input type="text" name="samedi" class="horaire" maxlength="100" value="{{ scheduleData.samedi }}">
       </div>
       <div class="jour">
         <span>Dim. :</span>
-        <input type="text" class="horaire dimanche" maxlength="100" value="Fermé">
+        <input type="text" name="dimanche" class="horaire" maxlength="100" value="{{ scheduleData.dimanche }}">
       </div>
       <div class="d-flex justify-content-around mt-4">
         <div>
-          <button class="btn-update btn btn-sm">Annuler</button>
+          <a href="{{ path('schedules.admin.manage') }}" class="btn-stop btn btn-sm">Annuler</a>
         </div>
         <div>
-          <button class="btn-create btn btn-sm">Valider</button>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('schedule-form') }}">
+          <button class="btn-update btn btn-sm" type="submit">Valider</button>
         </div>
       </div>
     </form>
   </div>
 </div>
-
 
 {% endblock %}

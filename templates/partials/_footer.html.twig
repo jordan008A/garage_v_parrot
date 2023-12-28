@@ -11,9 +11,9 @@
 
       <div id="schedules-box" class="col-lg-4 text-center p-0">
         <h4 class="text-decoration-underline mb-4">Horaires d'ouvertures</h4>
-        {# {% for schedule in schedules %}
-        <p class="m-1">{{schedule.day}} : {{schedule.text}}</p>
-        {% endfor %} #}
+        {% for schedule in schedules %}
+          <p class="m-1">{{ schedule.day }} : {{ schedule.text }}</p>
+        {% endfor %}
       </div>
       
       <div class="col-lg-4 d-none d-lg-flex justify-content-end">
