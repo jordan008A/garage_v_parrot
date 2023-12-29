@@ -76,7 +76,9 @@
   box-shadow: 4px 4px 12px rgba(38, 37, 38, 0.7);
 }
 
-.btn-stop, .btn-create, .btn-update {
+.btn-stop, 
+.btn-create, 
+.btn-update {
   border: none;
   font-size: 24px;
   padding: 4px 12px;
@@ -93,9 +95,9 @@
   }
 
   #adminForm select,
-#adminForm input::placeholder {
-  font-size: 16px;
-}
+  #adminForm input::placeholder {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -144,17 +146,17 @@
   }
 
   #adminForm select,
-#adminForm input::placeholder {
-  font-size: 12px;
-}
+  #adminForm input::placeholder {
+    font-size: 12px;
+  }
 
-.admin-list {
-  padding: 16px 0px;
-}
+  .admin-list {
+    padding: 16px 0px;
+  }
 
-.btn-stop, .btn-create, .btn-update {
-  font-size: 16px;
-  padding: 3px 9px;
-  border-radius: 6px;
-}
+  .btn-stop, .btn-create, .btn-update {
+    font-size: 16px;
+    padding: 3px 9px;
+    border-radius: 6px;
+  }
 }

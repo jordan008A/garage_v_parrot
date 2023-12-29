@@ -22,15 +22,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* Cacher les filtres par défaut */
   #filters {
     display: none;
   }
   
-  /* Afficher le bouton "Filtres" */
   #toggleFiltersBtn {
     display: block;
-    margin-bottom: 10px; /* Espacement du bouton */
+    margin-bottom: 10px;
   }
 }
 

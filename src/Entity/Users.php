@@ -9,35 +9,36 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[ORM\Table(name: "users")]
-class Users implements PasswordAuthenticatedUserInterface
+class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private ?Uuid $id = null;
+    private ?Uuid $id;
 
     #[Assert\NotBlank()]
     #[Assert\Email(
         message: 'L\'email {{ value }} est invalide.',
     )]
     #[ORM\Column(length: 255, unique:true)]
-    private ?string $email = null;
+    private ?string $email;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 60)]
-    private ?string $password = null;
+    private ?string $password;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $firstname = null;
+    private ?string $firstname;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]
-    private ?string $lastname = null;
+    private ?string $lastname;
 
     #[Assert\NotBlank()]
     #[ORM\Column]
@@ -236,5 +237,25 @@ class Users implements PasswordAuthenticatedUserInterface
         $this->resetTokenExpiresAt = $resetTokenExpiresAt;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = ['ROLE_USER'];
+
+        if ($this->isAdmin) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials(): void
+    {
     }
 }

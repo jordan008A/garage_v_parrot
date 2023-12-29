@@ -1,4 +1,4 @@
-// IIFE for map
+// Immediately Invoked Function Expression for map
 (function () {
   let setting = {
     "query": "1 Allée Gabriel Biénès, Toulouse, France",

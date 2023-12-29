@@ -1,23 +1,25 @@
 <nav class="nav-admin">
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'messages.admin.manage' %}active-admin{% endif %}" href="{{ path('messages.admin.manage') }}">Messages</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'services.admin.manage' %}active-admin{% endif %}" href="{{ path('services.admin.manage') }}">Services</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'users.admin.manage' %}active-admin{% endif %}" href="{{ path('users.admin.manage') }}">Utilisateurs</a>
-    <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'schedules.admin.manage' %}active-admin{% endif %}" href="{{ path('schedules.admin.manage') }}">Horaires</a>
-    <span>||</span>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'messages.admin.manage' %}active-admin{% endif %}" href="{{ path('messages.admin.manage') }}">Messages</a>
+        <span>||</span>
+        <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'services.admin.manage' %}active-admin{% endif %}" href="{{ path('services.admin.manage') }}">Services</a>
+        <span>||</span>
+        <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'users.admin.manage' %}active-admin{% endif %}" href="{{ path('users.admin.manage') }}">Utilisateurs</a>
+        <span>||</span>
+        <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'schedules.admin.manage' %}active-admin{% endif %}" href="{{ path('schedules.admin.manage') }}">Horaires</a>
+        <span>||</span>
+    {% endif %}
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'reviews.admin.manage' %}active-admin{% endif %}" href="{{ path('reviews.admin.manage') }}">Avis client</a>
     <span>||</span>
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'voitures.admin.manage' %}active-admin{% endif %}" href="{{ path('voitures.admin.manage') }}">Voitures</a>
-  </nav>
+</nav>
 
-  <div class="container">
+<div class="container">
     {% for message in app.flashes('success') %}
-      <div class="alert alert-success">{{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
 
     {% for message in app.flashes('error') %}
-      <div class="alert alert-danger">{{ message }}</div>
+        <div class="alert alert-danger">{{ message }}</div>
     {% endfor %}
-  </div>
+</div>

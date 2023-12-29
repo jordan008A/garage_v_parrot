@@ -15,66 +15,83 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ScheduleController extends AbstractController
 {
-    private $footerService;
+  private $footerService;
 
-    public function __construct(FooterService $footerService)
-    {
-      $this->footerService = $footerService;
+  /**
+   * Contructor for ScheduleController
+   *
+   * @param FooterService $footerService
+   */
+  public function __construct(FooterService $footerService)
+  {
+    $this->footerService = $footerService;
+  }
+
+  /**
+   * Display the schedule management page in the admin panel.
+   *
+   * @param SchedulesRepository $schedulesRepository
+   * @return Response
+   */
+  #[Route('/admin/schedules/manage', name: 'schedules.admin.manage', methods: ['GET'])]
+  public function manage(SchedulesRepository $schedulesRepository): Response
+  {
+    $footerData = $this->footerService->getFooterData();
+    $schedules = $schedulesRepository->findAll();
+    $scheduleData = [];
+
+    foreach ($schedules as $schedule) {
+      $scheduleData[strtolower($schedule->getDay())] = $schedule->getText();
     }
 
-    #[Route('/admin/schedules/manage', name: 'schedules.admin.manage', methods: ['GET'])]
-    public function manage(SchedulesRepository $schedulesRepository): Response
-    {
-      $footerData = $this->footerService->getFooterData();
-      $schedules = $schedulesRepository->findAll();
-      $scheduleData = [];
+    return $this->render('pages/admin/schedules.html.twig', [
+      'scheduleData' => $scheduleData,
+      'footerData' => $footerData,
+    ]);
+  }
 
-      foreach ($schedules as $schedule) {
-          $scheduleData[strtolower($schedule->getDay())] = $schedule->getText();
+
+  /**
+   * Update schedule information in the admin panel.
+   *
+   * @param SchedulesRepository $schedulesRepository
+   * @return Response
+   */
+  #[Route('/admin/schedules/update', name: 'schedules.update', methods: ['POST'])]
+  public function update(Request $request, SchedulesRepository $schedulesRepository, EntityManagerInterface $manager, ValidatorInterface $validator, CsrfTokenManagerInterface $csrfTokenManager): Response
+  {
+    $data = $request->request->all();
+
+    if (isset($data['_csrf_token'])) {
+      $csrfToken = new CsrfToken('schedule-form', $data['_csrf_token']);
+      if (!$csrfTokenManager->isTokenValid($csrfToken)) {
+        $this->addFlash('error', 'Token CSRF invalide.');
+        return $this->redirectToRoute('schedules.admin.manage');
       }
 
-      return $this->render('pages/admin/schedules.html.twig', [
-          'scheduleData' => $scheduleData,
-          'footerData' => $footerData,
-      ]);
-    }
+      foreach ($data as $day => $text) {
+        if ($day !== '_csrf_token') {
+          $schedule = $schedulesRepository->findOneBy(['day' => ucfirst($day)]);
+          if ($schedule) {
+            $schedule->setText($text);
+            $errors = $validator->validate($schedule);
 
-
-    #[Route('/admin/schedules/update', name: 'schedules.update', methods: ['POST'])]
-    public function update(Request $request, SchedulesRepository $schedulesRepository, EntityManagerInterface $manager, ValidatorInterface $validator, CsrfTokenManagerInterface $csrfTokenManager): Response
-    {
-        $data = $request->request->all();
-
-        if (isset($data['_csrf_token'])) {
-            $csrfToken = new CsrfToken('schedule-form', $data['_csrf_token']);
-            if (!$csrfTokenManager->isTokenValid($csrfToken)) {
-                $this->addFlash('error', 'Token CSRF invalide.');
-                return $this->redirectToRoute('schedules.admin.manage');
+            if (count($errors) > 0) {
+              $this->addFlash('error', 'Une erreur est survenue.');
+              return $this->redirectToRoute('schedules.admin.manage');
+            } else {
+              $manager->persist($schedule);
             }
-
-            foreach ($data as $day => $text) {
-                if ($day !== '_csrf_token') {
-                    $schedule = $schedulesRepository->findOneBy(['day' => ucfirst($day)]);
-                    if ($schedule) {
-                        $schedule->setText($text);
-                        $errors = $validator->validate($schedule);
-
-                        if (count($errors) > 0) {
-                          $this->addFlash('error', 'Une erreur est survenue.');
-                          return $this->redirectToRoute('schedules.admin.manage');
-                        } else {
-                          $manager->persist($schedule);
-                        }
-                    }
-                }
-            }
-
-            $manager->flush();
-            $this->addFlash('success', 'Les horaires ont été mis à jour.');
-        } else {
-            $this->addFlash('error', 'Une erreur est survenue.');
+          }
         }
+      }
 
-        return $this->redirectToRoute('schedules.admin.manage');
+      $manager->flush();
+      $this->addFlash('success', 'Les horaires ont été mis à jour.');
+    } else {
+      $this->addFlash('error', 'Une erreur est survenue.');
     }
+
+    return $this->redirectToRoute('schedules.admin.manage');
+  }
 }

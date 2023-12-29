@@ -21,11 +21,17 @@
           <li class="nav-item">
             <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'messages.create' %}active{% endif %}" href="{{ path('messages.create') }}">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == '' %}active{% endif %}" href="">Espace professionnel</a>
-          </li>
+          {% if is_granted('ROLE_USER') %}
+            <li class="nav-item">
+              <a class="nav-link fs-4 {% if app.request.attributes.get('_route') == 'espace_pro.index' %}active{% endif %}" href="{{ path('espace_pro.index') }}">Espace professionnel</a>
+            </li>
+          {% endif %}
         </ul>
-        <a class="btn button-p" href="">Se connecter</a>
+        {% if app.user %}
+          <a class="btn button-p" href="{{ path('app_logout') }}">Se déconnecter</a>
+        {% else %}
+          <a class="btn button-p" href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
       </div>
     </div>
   </nav>

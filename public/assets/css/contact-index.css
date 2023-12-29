@@ -10,11 +10,11 @@
 }
 
 @media screen and (max-width: 768px) {
-.contact-information {
-  text-align: center;
-}
+  .contact-information {
+    text-align: center;
+  }
 
-.map {
-  align-self: center;
-}
+  .map {
+    align-self: center;
+  }
 }
