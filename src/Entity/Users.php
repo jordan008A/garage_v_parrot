@@ -4,14 +4,15 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\UuidV6 as Uuid;
+use Symfony\Component\Uid\UuidV7 as Uuid;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[ORM\Table(name: "users")]
-class Users
+class Users implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -69,6 +70,12 @@ class Users
         inverseJoinColumns: [new ORM\JoinColumn(name: "car_id", referencedColumnName: "id")]
     )]
     private Collection $cars;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $resetTokenExpiresAt = null;
 
     public function __construct()
     {
@@ -203,6 +210,30 @@ class Users
     public function removeCar(Cars $car): self
     {
         $this->cars->removeElement($car);
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getResetTokenExpiresAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenExpiresAt;
+    }
+
+    public function setResetTokenExpiresAt(?\DateTimeInterface $resetTokenExpiresAt): self
+    {
+        $this->resetTokenExpiresAt = $resetTokenExpiresAt;
 
         return $this;
     }

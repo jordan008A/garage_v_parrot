@@ -12,31 +12,31 @@
     <form class="schedule-form" action="{{ path('schedules.update') }}" method="post">
       <div class="jour">
         <span>Lun. :</span>
-        <input type="text" name="lundi" class="horaire" maxlength="100" value="{{ scheduleData.lundi }}">
+        <input type="text" name="lundi" class="horaire" maxlength="100" value="{{ scheduleData.lundi }}" required>
       </div>
       <div class="jour">
         <span>Mar. :</span>
-        <input type="text" name="mardi" class="horaire" maxlength="100" value="{{ scheduleData.mardi }}">
+        <input type="text" name="mardi" class="horaire" maxlength="100" value="{{ scheduleData.mardi }}" required>
       </div>
       <div class="jour">
         <span>Mer. :</span>
-        <input type="text" name="mercredi" class="horaire" maxlength="100" value="{{ scheduleData.mercredi }}">
+        <input type="text" name="mercredi" class="horaire" maxlength="100" value="{{ scheduleData.mercredi }}" required>
       </div>
       <div class="jour">
         <span>Jeu. :</span>
-        <input type="text" name="jeudi" class="horaire" maxlength="100" value="{{ scheduleData.jeudi }}">
+        <input type="text" name="jeudi" class="horaire" maxlength="100" value="{{ scheduleData.jeudi }}" required>
       </div>
       <div class="jour">
         <span>Ven. :</span>
-        <input type="text" name="vendredi" class="horaire" maxlength="100" value="{{ scheduleData.vendredi }}">
+        <input type="text" name="vendredi" class="horaire" maxlength="100" value="{{ scheduleData.vendredi }}" required>
       </div>
       <div class="jour">
         <span>Sam. :</span>
-        <input type="text" name="samedi" class="horaire" maxlength="100" value="{{ scheduleData.samedi }}">
+        <input type="text" name="samedi" class="horaire" maxlength="100" value="{{ scheduleData.samedi }}" required>
       </div>
       <div class="jour">
         <span>Dim. :</span>
-        <input type="text" name="dimanche" class="horaire" maxlength="100" value="{{ scheduleData.dimanche }}">
+        <input type="text" name="dimanche" class="horaire" maxlength="100" value="{{ scheduleData.dimanche }}" required>
       </div>
       <div class="d-flex justify-content-around mt-4">
         <div>

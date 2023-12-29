@@ -3,11 +3,11 @@
     <span>||</span>
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'services.admin.manage' %}active-admin{% endif %}" href="{{ path('services.admin.manage') }}">Services</a>
     <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'home.index' %}active-admin{% endif %}" href="#">Utilisateurs</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'users.admin.manage' %}active-admin{% endif %}" href="{{ path('users.admin.manage') }}">Utilisateurs</a>
     <span>||</span>
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'schedules.admin.manage' %}active-admin{% endif %}" href="{{ path('schedules.admin.manage') }}">Horaires</a>
     <span>||</span>
-    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'reviews.admin.index' %}active-admin{% endif %}" href="{{ path('reviews.admin.index') }}">Avis client</a>
+    <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'reviews.admin.manage' %}active-admin{% endif %}" href="{{ path('reviews.admin.manage') }}">Avis client</a>
     <span>||</span>
     <a class="nav-link mx-2 {% if app.request.attributes.get('_route') == 'voitures.admin.manage' %}active-admin{% endif %}" href="{{ path('voitures.admin.manage') }}">Voitures</a>
   </nav>

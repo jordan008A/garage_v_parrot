@@ -74,7 +74,7 @@
       </div>
       <div class="col-12">
         <label for="subject" class="form-label">Sujet</label>
-        <input type="text" name="subject" class="form-control" maxlength="20" readonly value={{car.title}}>
+        <input type="text" name="subject" class="form-control" maxlength="20" readonly value="{{ car.title }}">
       </div>
       <div class="col-12">
         <label for="comment" class="form-label">Commentaire</label>
@@ -83,7 +83,7 @@
       </div>
       <div class="col-md-12 d-flex justify-content-center">
       <input type="hidden" name="_csrf_token" value="{{ csrf_token('contact-details-form') }}">
-        <button type="submit" class="btn button-p fs-3 fw-medium">Soumettre le formulaire</button>
+        <button type="submit" class="btn button-p fs-3 fw-medium">Envoyer un message</button>
       </div>
     </form>   
   </div>

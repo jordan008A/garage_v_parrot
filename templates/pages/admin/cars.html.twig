@@ -11,13 +11,13 @@
       <div class="row mb-4">
         <div class="col-md-12">
           <label for="title" class="form-label">Titre de l'annonce</label>
-          <input type="text" name="title" class="form-control" maxlength="50">
+          <input type="text" name="title" class="form-control" maxlength="50" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="brand" class="form-label">Marque du véhicule</label>
-          <select name="brand" class="form-select">
+          <select name="brand" class="form-select" required>
             <option selected disabled>Sélectionner</option>
             {% for brand in brands %}
               <option value="{{ brand.id }}">{{ brand.property }}</option>
@@ -26,23 +26,23 @@
         </div>
         <div class="col-md-6">
           <label for="price" class="form-label">Prix en €</label>
-          <input type="number" name="price" class="form-control" maxlength="11">
+          <input type="number" name="price" class="form-control" maxlength="11" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="year" class="form-label">Année</label>
-          <input type="number" name="year" class="form-control" maxlength="11">
+          <input type="number" name="year" class="form-control" maxlength="11" required>
         </div>
         <div class="col-md-6">
           <label for="mileage" class="form-label">Kilométrage</label>
-          <input type="number" name="mileage" class="form-control" maxlength="11">
+          <input type="number" name="mileage" class="form-control" maxlength="11" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="motorTechnologie" class="form-label">Carburation</label>
-          <select class="form-select" name="motorTechnologie">
+          <select class="form-select" name="motorTechnologie" required>
             <option selected disabled>Sélectionner</option>
             {% for motorTech in motorTechnologies %}
               <option value="{{ motorTech.id }}">{{ motorTech.property }}</option>
@@ -51,13 +51,13 @@
         </div>
         <div class="col-md-6">
           <label for="puissanceDin" class="form-label">Puissance DIN</label>
-          <input type="number" name="puissanceDin" class="form-control" maxlength="11" placeholder="Ch">
+          <input type="number" name="puissanceDin" class="form-control" maxlength="11" placeholder="Ch" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="puissanceFiscale" class="form-label">Puissance Fiscale</label>
-          <input type="number" name="puissanceFiscale" class="form-control" maxlength="11" placeholder="CV">
+          <input type="number" name="puissanceFiscale" class="form-control" maxlength="11" placeholder="CV" required>
         </div>
         <div class="col-md-6">
           <label for="isAutomatically" class="form-label">Boîte de vitesse</label>

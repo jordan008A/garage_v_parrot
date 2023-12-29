@@ -11,13 +11,13 @@
       <div class="row mb-4">
         <div class="col-md-12">
           <label for="title" class="form-label">Titre de l'annonce</label>
-          <input type="text" name="title" class="form-control" maxlength="50" value="{{ car.title }}">
+          <input type="text" name="title" class="form-control" maxlength="50" value="{{ car.title }}" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="brand" class="form-label">Marque du véhicule</label>
-          <select name="brand" class="form-select">
+          <select name="brand" class="form-select" required>
             {% for brand in brands %}
               <option value="{{ brand.id }}" {% if brand.id == car.brand.id %}selected{% endif %}>{{ brand.property }}</option>
             {% endfor %}
@@ -25,23 +25,23 @@
         </div>
         <div class="col-md-6">
           <label for="price" class="form-label">Prix en €</label>
-          <input type="number" name="price" class="form-control" maxlength="11" value="{{ car.price }}">
+          <input type="number" name="price" class="form-control" maxlength="11" value="{{ car.price }}" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="year" class="form-label">Année</label>
-          <input type="number" name="year" class="form-control" maxlength="11" value="{{ car.year }}">
+          <input type="number" name="year" class="form-control" maxlength="11" value="{{ car.year }}" required>
         </div>
         <div class="col-md-6">
           <label for="mileage" class="form-label">Kilométrage</label>
-          <input type="number" name="mileage" class="form-control" maxlength="11" value="{{ car.mileage }}">
+          <input type="number" name="mileage" class="form-control" maxlength="11" value="{{ car.mileage }}" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="motorTechnologie" class="form-label">Carburation</label>
-          <select class="form-select" name="motorTechnologie">
+          <select class="form-select" name="motorTechnologie" required>
             {% for motorTech in motorTechnologies %}
               <option value="{{ motorTech.id }}" {% if motorTech.id == car.motorTechnologie.id %}selected{% endif %}>{{ motorTech.property }}</option>
             {% endfor %}
@@ -49,13 +49,13 @@
         </div>
         <div class="col-md-6">
           <label for="puissanceDin" class="form-label">Puissance DIN</label>
-          <input type="number" name="puissanceDin" class="form-control" maxlength="11" placeholder="Ch" value="{{ car.puissanceDin }}">
+          <input type="number" name="puissanceDin" class="form-control" maxlength="11" placeholder="Ch" value="{{ car.puissanceDin }}" required>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6 first-input">
           <label for="puissanceFiscale" class="form-label">Puissance Fiscale</label>
-          <input type="number" name="puissanceFiscale" class="form-control" maxlength="11" placeholder="CV" value="{{ car.puissanceFiscale }}">
+          <input type="number" name="puissanceFiscale" class="form-control" maxlength="11" placeholder="CV" value="{{ car.puissanceFiscale }}" required>
         </div>
         <div class="col-md-6">
           <label for="isAutomatically" class="form-label">Boîte de vitesse</label>

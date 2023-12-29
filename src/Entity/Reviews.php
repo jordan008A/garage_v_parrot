@@ -36,7 +36,7 @@ class Reviews
     private ?int $rate;
 
     #[Assert\NotNull()]
-    #[ORM\ManyToOne(targetEntity: Services::class)]
+    #[ORM\ManyToOne(targetEntity: Services::class, inversedBy:"reviews")]
     #[ORM\JoinColumn(name: "service_id", referencedColumnName: "id")]
     private ?Services $service;
 

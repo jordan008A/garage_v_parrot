@@ -14,20 +14,18 @@ class CarFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        // Création d'une instance de MotorTechnologies
         $motorTech = new MotorTechnologies();
-        $motorTech->setProperty('Extraterrestre'); // Par exemple
+        $motorTech->setProperty('Extraterrestre');
         $manager->persist($motorTech);
 
-        // Création d'une instance de Brands
         $brand = new Brands();
-        $brand->setProperty('Alien'); // Par exemple
+        $brand->setProperty('Alien');
         $manager->persist($brand);
         $manager->flush();
 
 
         $cars = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $car = new Cars();
             $car->setTitle('Car ' . $i);
             $car->setPrice(rand(2000, 150000));
@@ -39,7 +37,7 @@ class CarFixtures extends Fixture
             $car->setMotorTechnologie($motorTech);
             $car->setBrand($brand);
             $manager->persist($car);
-            $cars[] = $car; // Stocker la voiture pour une utilisation ultérieure
+            $cars[] = $car;
         }
         $manager->flush();
 
@@ -47,10 +45,9 @@ class CarFixtures extends Fixture
           $isPrimarySet = false;
           for ($j = 0; $j < 4; $j++) {
               $picture = new Pictures();
-              $picture->setPicture('voiture-' . rand(1, 6) . '-' . rand(1, 4) . '.jpg'); // Chemin aléatoire
+              $picture->setPicture('voiture-' . rand(1, 6) . '-' . rand(1, 4) . '.jpg');
               $picture->setCar($car);
       
-              // Définir une image au hasard comme principale
               if (!$isPrimarySet && rand(0, 3) == 0) {
                   $picture->setIsPrimary(true);
                   $isPrimarySet = true;

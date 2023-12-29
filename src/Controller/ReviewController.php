@@ -74,7 +74,7 @@ class ReviewController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/reviews', name: 'reviews.admin.index', methods: ['GET'])]
+    #[Route('/admin/reviews', name: 'reviews.admin.manage', methods: ['GET'])]
     public function adminIndex(ReviewsRepository $reviewsRepository, ServicesRepository $servicesRepository): Response
     {
         $footerData = $this->footerService->getFooterData();
@@ -121,14 +121,14 @@ class ReviewController extends AbstractController
                     $manager->persist($review);
                     $manager->flush();
                     $this->addFlash('success', 'Votre avis a été envoyé avec succès.');
-                    return $this->redirectToRoute('reviews.admin.index');
+                    return $this->redirectToRoute('reviews.admin.manage');
                 }
             } else {
                 $this->addFlash('error', 'Une erreur est survenue.');
             }
         }
 
-        return $this->redirectToRoute('reviews.admin.index');
+        return $this->redirectToRoute('reviews.admin.manage');
     }
 
     #[Route('/admin/reviews/delete/{id}', name: 'reviews.delete', methods: ['POST'])]
@@ -143,7 +143,7 @@ class ReviewController extends AbstractController
             $this->addFlash('error', 'Avis introuvable.');
         }
 
-        return $this->redirectToRoute('reviews.admin.index');
+        return $this->redirectToRoute('reviews.admin.manage');
     }
 
     #[Route('/admin/reviews/validate/{id}', name: 'reviews.validate', methods: ['POST'])]
@@ -159,6 +159,6 @@ class ReviewController extends AbstractController
             $this->addFlash('error', 'Avis introuvable.');
         }
 
-        return $this->redirectToRoute('reviews.admin.index');
+        return $this->redirectToRoute('reviews.admin.manage');
     }
 }

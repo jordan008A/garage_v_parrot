@@ -10,6 +10,15 @@
   font-size: 16px;
 }
 
+.btn-password {
+  color: #ffffff;
+  background-color: #D92332;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 2px 2px 8px rgba(38, 37, 38, 0.5);
+}
+
 @media screen and (max-width: 576px) {
   #userCard {
     margin: 10px 0;
