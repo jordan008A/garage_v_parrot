@@ -110,6 +110,27 @@ class Services
         return $this->messages;
     }
 
+    public function addReview(Reviews $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Reviews $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            if ($review->getService() === $this) {
+                $review->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getReviews(): Collection
     {
         return $this->reviews;

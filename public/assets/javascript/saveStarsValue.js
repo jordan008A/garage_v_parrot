@@ -5,7 +5,7 @@ const forms = document.querySelectorAll('.reviews-form');
 forms.forEach(form => {
   form.addEventListener('submit', function(event) {
     // Get the rating value from the form
-    let ratingValue = form.querySelector('.rating-value').value;
+    let ratingValue = document.getElementById('ratingValue').value;
     // Check if the rating value is not set or is zero
     if (!ratingValue || ratingValue === '0') {
       // Show an alert if no rating is provided and prevent form submission

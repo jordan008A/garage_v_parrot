@@ -72,7 +72,7 @@ class ReviewController extends AbstractController
           return $this->redirectToRoute('home.index');
           }
       } else {
-        $this->addFlash('error', 'Une erreur est survenue.');
+        $this->addFlash('error', 'Veuillez sélectionner un sujet.');
       }
     }
 
@@ -153,7 +153,7 @@ class ReviewController extends AbstractController
           return $this->redirectToRoute('reviews.admin.manage');
         }
       } else {
-        $this->addFlash('error', 'Une erreur est survenue.');
+        $this->addFlash('error', 'Veuillez sélectionner un sujet.');
       }
     }
 

@@ -18,6 +18,10 @@ class MotorTechnologies
     private ?int $id;
 
     #[Assert\NotBlank()]
+    #[Assert\Length(
+        max: 30,
+        maxMessage: "La propriété ne doit pas dépasser 30 caractères."
+    )]
     #[ORM\Column(length: 30)]
     private ?string $property;
 

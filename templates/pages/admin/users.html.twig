@@ -22,7 +22,7 @@
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" name="password" class="form-control" required>
+        <input type="password" name="password" class="form-control" minlength="8" required>
       </div>
       <div class="d-flex justify-content-around">
         <div>
@@ -38,7 +38,6 @@
   
   <div class="admin-list mt-4 table-responsive">
     <table class="table table-sm d-none d-md-table">
-      <!-- Entête du tableau -->
       <thead>
         <tr>
           <th scope="col">Nom</th>
@@ -49,7 +48,6 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <!-- Contenu du tableau -->
       <tbody>
       {% for user in users %}
         <tr>
@@ -74,7 +72,6 @@
       {% endfor %}
       </tbody>
     </table>
-    <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
     {% for user in users %}
       <div id="userCard" class="card">

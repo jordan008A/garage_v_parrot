@@ -167,6 +167,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getSchedules(): Collection
+    {
+        return $this->schedules;
+    }
+
     public function addReview(Reviews $review): self
     {
         if (!$this->reviews->contains($review)) {
@@ -181,6 +186,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->reviews->removeElement($review);
 
         return $this;
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
     }
 
     public function addService(Services $service): self
@@ -199,6 +209,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
     public function addCar(Cars $car): self
     {
         if (!$this->cars->contains($car)) {
@@ -213,6 +228,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->cars->removeElement($car);
 
         return $this;
+    }
+
+    public function getCars(): Collection
+    {
+        return $this->cars;
     }
 
     public function getResetToken(): ?string

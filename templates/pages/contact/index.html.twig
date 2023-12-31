@@ -3,78 +3,78 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class="container">
+  <div class="container">
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
+      <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
 
     {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-danger">{{ message }}</div>
     {% endfor %}
-    </div>
+  </div>
 
-    <div class="container mt-5 justify-content-around">
-        <h1 class="text-center h1 h1-border">Contactez-nous</h1>
-        <p class="text-center text-general">
-        Vous avez besoin d'informations complémentaires concernant nos services ou une des voitures 
-        disponible à la vente ? Faites-le nous savoir, 
-        nous prendrons le temps de vous lire et de vous répondre dans les meilleurs delais.
-        </p>
-        <div class="row align-items-around">
-            <div class="col-md-6">
-                <form method="post" class="contact-index-form row g-3 fs-4 mt-4 form-p">
-                    <div class="col-lg-6">
-                        <label for="lastname" class="form-label">Nom</label>
-                        <input type="text" name="lastname" class="form-control" maxlength="50" placeholder="Nom" required>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="firstname" class="form-label">Prénom</label>
-                        <input type="text" name="firstname" class="form-control" maxlength="50" placeholder="Prénom" required>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" maxlength="255" placeholder="example@example.fr" required>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="phone" class="form-label">Téléphone</label>
-                        <input type="tel" name="phone" class="form-control" maxlength="20" placeholder="0600000000" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="subject" class="form-label">Sujet</label>
-                        <select name="subject" class="form-select"  required>
-                            <option selected disabled>Sélectionner un sujet...</option>
-                            {% for service in services %}
-                            <option value="{{ service.id }}">{{ service.title }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label for="comment" class="form-label">Commentaire</label>
-                        <textarea type="text" name="comment" class="form-control" id="area255" rows="5" placeholder="Max 255 caractères" required></textarea>
-                        <p id="lengthValue255">0 / 255 caractères</p>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-center">
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('contact-index-form') }}">
-                        <button type="submit" class="btn button-p fs-4 fw-medium">Envoyer un message</button>
-                    </div>
-                </form> 
-            </div>
-            <div class="col-md-4 offset-md-1 align-self-center">
-                <div class="contact-information">
-                    <p class="my-2">Garage V.Parrot</p>
-                    <p class="my-2">1 Allée Gabriel Biénès</p>
-                    <p class="my-2">31000 Toulouse</p>
-                    <p class="my-2">Tél. : 06 XX XX XX XX</p>
-                    <p class="my-2">@ : garage@parrot.fr</p>
-                </div>
-                <div class="map">
-                    <div class="m-auto" id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
-                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
-                    </div>
-                </div>
-            </div>
+  <div class="container mt-5 justify-content-around">
+    <h1 class="text-center h1 h1-border">Contactez-nous</h1>
+    <p class="text-center text-general">
+    Vous avez besoin d'informations complémentaires concernant nos services ou une des voitures 
+    disponible à la vente ? Faites-le nous savoir, 
+    nous prendrons le temps de vous lire et de vous répondre dans les meilleurs delais.
+    </p>
+    <div class="row align-items-around">
+      <div class="col-md-6">
+        <form method="post" class="contact-index-form row g-3 fs-4 mt-4 form-p">
+          <div class="col-lg-6">
+            <label for="lastname" class="form-label">Nom</label>
+            <input type="text" name="lastname" class="form-control" maxlength="50" placeholder="Nom" required>
+          </div>
+          <div class="col-lg-6">
+            <label for="firstname" class="form-label">Prénom</label>
+            <input type="text" name="firstname" class="form-control" maxlength="50" placeholder="Prénom" required>
+          </div>
+          <div class="col-lg-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" maxlength="255" placeholder="example@example.fr" required>
+          </div>
+          <div class="col-lg-6">
+            <label for="phone" class="form-label">Téléphone</label>
+            <input type="tel" name="phone" class="form-control" maxlength="20" placeholder="0600000000" required>
+          </div>
+          <div class="col-12">
+            <label for="subject" class="form-label">Sujet</label>
+            <select name="subject" class="form-select"  required>
+              <option selected disabled>Sélectionner un sujet...</option>
+              {% for service in services %}
+              <option value="{{ service.id }}">{{ service.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="comment" class="form-label">Commentaire</label>
+            <textarea type="text" name="comment" class="form-control" id="area255" rows="5" placeholder="Max 255 caractères" required></textarea>
+            <p id="lengthValue255">0 / 255 caractères</p>
+          </div>
+          <div class="col-md-12 d-flex justify-content-center">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('contact-index-form') }}">
+            <button type="submit" class="btn button-p fs-4 fw-medium">Envoyer un message</button>
+          </div>
+        </form> 
+      </div>
+      <div class="col-md-4 offset-md-1 align-self-center">
+        <div class="contact-information">
+          <p class="my-2">Garage V.Parrot</p>
+          <p class="my-2">1 Allée Gabriel Biénès</p>
+          <p class="my-2">31000 Toulouse</p>
+          <p class="my-2">Tél. : 06 XX XX XX XX</p>
+          <p class="my-2">@ : garage@parrot.fr</p>
         </div>
+        <div class="map">
+          <div class="m-auto" id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+            <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="{{ asset('assets/javascript/limitCharacters255.js') }}"></script>
+  </div>
+  <script src="{{ asset('assets/javascript/limitCharacters255.js') }}"></script>
 {% endblock %}
 

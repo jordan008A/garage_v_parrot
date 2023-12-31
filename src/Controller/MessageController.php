@@ -76,7 +76,7 @@ class MessageController extends AbstractController
         return $this->redirectToRoute('home.index');
         }
       } else {
-        $this->addFlash('error', 'Une erreur est survenue.');
+        $this->addFlash('error', 'Veuillez sélectionner un sujet.');
       }
 
       }

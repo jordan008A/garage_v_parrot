@@ -4,18 +4,18 @@
 
 {% block body %}
 {% for service in services %}
-    <article class ="article-container">
-        <div class="text-center mb-3">
-        <h1 class="text-general h1">{{service.title}}</h1>
-        </div>
-        <div class="d-flex flex-column justify-content-center flex-lg-row align-items-lg-center">
-            <img src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}" class="article-img d-block">
-        {% if loop.index is odd %}
-            <p class="article-text order-lg-last">{{ service.text }}</p>
-            {% else %}
-            <p class="article-text order-lg-first">{{ service.text }}</p>
-        {% endif %}
-        </div>
-    </article>
+  <article class ="article-container">
+    <div class="text-center mb-3">
+    <h1 class="text-general h1">{{service.title}}</h1>
+    </div>
+    <div class="d-flex flex-column justify-content-center flex-lg-row align-items-lg-center">
+      <img src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}" class="article-img d-block">
+    {% if loop.index is odd %}
+      <p class="article-text order-lg-last">{{ service.text }}</p>
+      {% else %}
+      <p class="article-text order-lg-first">{{ service.text }}</p>
+    {% endif %}
+    </div>
+  </article>
 {% endfor %}
 {% endblock %}

@@ -11,7 +11,6 @@
       <p class="text-center">Aucun message n'a été trouvé.</p>
     {% else %}
     <table class="table table-sm d-none d-md-table">
-
       <thead>
         <tr>
           <th scope="col">Nom</th>
@@ -42,7 +41,6 @@
         {% endfor %}
       </tbody>
     </table>
-    <!-- Pour les écrans plus petits -->
     <div class="card-deck d-md-none">
       {% for message in messages %}
         <div id="messageCard" class="card">

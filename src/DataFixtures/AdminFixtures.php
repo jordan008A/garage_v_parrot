@@ -18,15 +18,20 @@ class AdminFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $email = 'vincent@parrot.fr'; // Replace this email with yours
+        $firstname = 'Vincent'; // Replace this firstname with yours
+        $lastname = 'Parrot'; // Replace this lastname with yours
+        $password = 'studi2023'; // Replace this password with yours
+
         $adminUser = new Users();
-        $adminUser->setEmail('vincent@parrot.fr');
-        $adminUser->setFirstname('Vincent');
-        $adminUser->setLastname('Parrot');
+        $adminUser->setEmail($email);
+        $adminUser->setFirstname($firstname);
+        $adminUser->setLastname($lastname);
         $adminUser->setIsAdmin(true);
 
         $hashedPassword = $this->passwordHasher->hashPassword(
             $adminUser,
-            'studi2023'
+            $password
         );
 
         $adminUser->setPassword($hashedPassword);
