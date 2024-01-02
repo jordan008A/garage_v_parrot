@@ -8,11 +8,4 @@ area175.addEventListener('input', function() {
   const textLengthDetails = this.value.length;
   // Display the current character count out of the maximum allowed
   lengthValue175.textContent = textLengthDetails + ' / 175 caractères';
-        
-  // If the text exceeds 175 characters, truncate it to 175 characters
-  if (textLengthDetails > 175) {
-    this.value = this.value.substring(0, 175);
-    // Update the display to show the maximum character count
-    lengthValue175.textContent = '175 / 175 caractères';
-  }
 });
