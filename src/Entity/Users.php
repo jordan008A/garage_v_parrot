@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
 #[ORM\Table(name: "users")]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -32,7 +33,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 60)]
     private ?string $password;
 
-    private?string $plainPassword;
+    private?string $plainPassword = null;
 
     #[Assert\NotBlank()]
     #[ORM\Column(length: 50)]

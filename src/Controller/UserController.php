@@ -80,13 +80,8 @@ class UserController extends AbstractController
         $user->setLastname($data['lastname'])
           ->setFirstname($data['firstname'])
           ->setEmail($data['email'])
+          ->setPlainPassword($data['password'])
           ->setIsAdmin(false);
-
-        $hashedPassword = $passwordEncoder->hashPassword(
-          $user,
-          $data['password'],
-        );
-        $user->setPassword($hashedPassword);
 
         $manager->persist($user);
         $manager->flush();
@@ -229,8 +224,7 @@ class UserController extends AbstractController
 
     if ($request->isMethod('POST')) {
       $newPassword = $request->request->get('password');
-      $hashedPassword = $passwordEncoder->hashPassword($user, $newPassword);
-      $user->setPassword($hashedPassword);
+      $user->setPlainPassword($newPassword);
       $user->setResetToken(null);
       $user->setResetTokenExpiresAt(null);
 
