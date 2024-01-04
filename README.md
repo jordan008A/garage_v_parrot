@@ -45,8 +45,9 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
   ```
   php bin/console app:create-admin
   ``` 
-  :information_source: :information_source: :information_source:
-> Laissez-vous guider par les différentes questions.
+  :information_source:
+  > Laissez-vous guider par les différentes questions.
+  :information_source:
     - Démarrage du Serveur Symfony :
   ```
   symfony server:start
