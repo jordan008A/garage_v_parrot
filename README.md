@@ -41,14 +41,14 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
   ```
   php bin/console doctrine:fixtures:load
   ``` 
-  - Utilisez la commande personnalisée pour créer un administrateur :
+- Utilisez la commande personnalisée pour créer un administrateur :
   ```
   php bin/console app:create-admin
   ``` 
   :information_source:
   > Laissez-vous guider par les différentes questions.
   :information_source:
-    - Démarrage du Serveur Symfony :
+- Démarrage du Serveur Symfony :
   ```
   symfony server:start
   ``` 
