@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
 {
-  private $footerService;
+  private FooterService $footerService;
 
   /**
    * Constructor for MainController

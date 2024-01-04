@@ -6,7 +6,7 @@ use App\Repository\SchedulesRepository;
 
 class FooterService
 {
-    private $schedulesRepository;
+    private SchedulesRepository $schedulesRepository;
 
     public function __construct(SchedulesRepository $schedulesRepository)
     {

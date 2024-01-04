@@ -13,6 +13,20 @@
       "database": "garage_v_parrot",
       "username": "root",
       "password": ""
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "essa_garage",
+      "database": "essai_clone",
+      "username": "root",
+      "password": ""
     }
   ]
 }

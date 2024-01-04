@@ -17,7 +17,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-  private $footerService;
+  private FooterService $footerService;
 
   /**
    * Constructor for UserController

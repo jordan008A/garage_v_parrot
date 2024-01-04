@@ -23,7 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CarController extends AbstractController
 {
 
-  private $footerService;
+  private FooterService $footerService;
 
   /**
    * Constructor for CarController.

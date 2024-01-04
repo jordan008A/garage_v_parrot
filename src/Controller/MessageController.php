@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MessageController extends AbstractController
 {
 
-  private $footerService;
+  private FooterService $footerService;
 
     /**
      * Constructor for MessageController

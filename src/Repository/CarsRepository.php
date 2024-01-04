@@ -33,7 +33,7 @@ class CarsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findFilteredCars($yearMin, $yearMax, $kmMin, $kmMax, $priceMin, $priceMax)
+    public function findFilteredCars(int $yearMin, int $yearMax, int $kmMin, int $kmMax, int $priceMin, int $priceMax)
     {
         $qb = $this->createQueryBuilder('c');
 

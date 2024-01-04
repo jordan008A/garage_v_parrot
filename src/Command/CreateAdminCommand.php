@@ -70,7 +70,7 @@ class CreateAdminCommand extends Command
             ->setLastname($lastname)
             ->setEmail($email)
             ->setPlainPassword($plainPassword)
-            ->setIsAdmin(1);
+            ->setIsAdmin(true);
 
         $this->manager->persist($user);
         $this->manager->flush();

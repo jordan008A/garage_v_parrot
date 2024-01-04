@@ -17,7 +17,7 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 
 class ReviewController extends AbstractController
 {
-  private $footerService;
+  private FooterService $footerService;
 
     /**
      * Constructor for ReviewController

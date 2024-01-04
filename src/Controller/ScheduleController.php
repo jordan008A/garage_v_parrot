@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ScheduleController extends AbstractController
 {
-  private $footerService;
+  private FooterService $footerService;
 
   /**
    * Contructor for ScheduleController

@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
 
-  private $footerService;
+  private FooterService $footerService;
 
   /**
    * Constructor for SecurityController
