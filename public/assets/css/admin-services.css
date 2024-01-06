@@ -67,10 +67,9 @@
   
 @media screen and (max-width: 576px) {
   #imagePreview, .current-image {
-    width: 150px;
-    height: 105px;
+    width: 180px;
+    height: 126px;
     margin: 5px auto;
-    display: none;
   }
     
   #imagePreview img, .current-image img {

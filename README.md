@@ -25,6 +25,7 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
   cd garage_v_parrot
   ```
 - Modifiez le fichier .env ou .env.local avec vos informations de base de données dans DATABASE_URL.
+
 - Installation des dépendances
   ```
   composer install
@@ -47,7 +48,7 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
   ``` 
   :information_source:
   > Laissez-vous guider par les différentes questions.
-  :information_source:
+
 - Démarrage du Serveur Symfony :
   ```
   symfony server:start
