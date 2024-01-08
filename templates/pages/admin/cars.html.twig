@@ -130,10 +130,10 @@
           <td>{{car.puissanceDin}}ch</td>
           <td>
             {% for picture in car.pictures|filter(picture => picture.isPrimary) %}
-                <img class="car-image" src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" alt="Image principale de {{ car.title }}">
+                <img class="car-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" alt="Image principale de {{ car.title }}">
             {% endfor %}
             {% for picture in car.pictures|filter(picture => not picture.isPrimary) %}
-                <img class="car-image" src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" alt="Image secondaire de {{ car.title }}">
+                <img class="car-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" alt="Image secondaire de {{ car.title }}">
             {% endfor %}
           </td>
           <td>
@@ -168,10 +168,10 @@
           <div class="d-flex flex-colum justify-content-around">
             <div class="mt-2 me-2 text-center">
             {% for picture in car.pictures|filter(picture => picture.isPrimary) %}
-                <img class="car-image" src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" alt="Image principale de {{ car.title }}">
+                <img class="car-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" alt="Image principale de {{ car.title }}">
             {% endfor %}
             {% for picture in car.pictures|filter(picture => not picture.isPrimary) %}
-                <img class="car-image" src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" alt="Image secondaire de {{ car.title }}">
+                <img class="car-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" alt="Image secondaire de {{ car.title }}">
             {% endfor %}
             </div>
             <div class="d-flex flex-column justify-content-center">

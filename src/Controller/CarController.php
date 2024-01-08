@@ -6,6 +6,7 @@ use App\Entity\Cars;
 use App\Entity\Messages;
 use App\Entity\Pictures;
 use App\Service\FooterService;
+use App\Service\S3ClientService;
 use App\Repository\CarsRepository;
 use App\Repository\BrandsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,15 +25,17 @@ class CarController extends AbstractController
 {
 
   private FooterService $footerService;
+  private S3ClientService $s3ClientService;
 
   /**
    * Constructor for CarController.
    *
    * @param FooterService $footerService
    */
-  public function __construct(FooterService $footerService)
+  public function __construct(FooterService $footerService, S3ClientService $s3ClientService)
   {
     $this->footerService = $footerService;
+    $this->s3ClientService = $s3ClientService;
   }
 
   /**
@@ -42,10 +45,12 @@ class CarController extends AbstractController
    * @param string $directory
    * @return string
    */
-  private function saveImage(UploadedFile $file, $directory): string
+  private function saveImage(UploadedFile $file): string
   {
     $filename = md5(uniqid()) . '.' . $file->guessExtension();
-    $file->move($directory, $filename);
+
+    $this->s3ClientService->uploadFile($file->getPathname(), $filename);
+
     return $filename;
   }
 
@@ -55,19 +60,13 @@ class CarController extends AbstractController
    * @param string $filename
    * @return bool
    */
-  private function deleteImage(string $filename): bool {
-    $filePath = $this->getParameter('images_directory') . '/' . $filename;
-    
-    if (file_exists($filePath)) {
-      try {
-        unlink($filePath);
+  private function deleteImage(string $filename): bool
+  {
+    try {
+        $this->s3ClientService->deleteFile($filename);
         return true;
-      } catch (\Exception $e) {
-        error_log('Erreur lors de la suppression du fichier: ' . $e->getMessage());
-        return false;
-      }
-    } else {
-      error_log('Le fichier à supprimer n\'existe pas: ' . $filePath);
+    } catch (\Exception $e) {
+      error_log('Erreur lors de la suppression du fichier S3: ' . $e->getMessage());
       return false;
     }
   }
@@ -128,7 +127,7 @@ class CarController extends AbstractController
         'price' => $car->getPrice(),
         'year' => $car->getYear(),
         'mileage' => $car->getMileage(),
-        'primaryPictureUrl' => 'assets/img/uploads/' . $primaryPicture->getPicture(),
+        'primaryPictureUrl' => 'https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/' . $primaryPicture->getPicture(),
       ];
     }
 
@@ -257,38 +256,38 @@ class CarController extends AbstractController
           $car->setBrand($brand);
           $car->setMotorTechnologie($motorTechnologie);
 
-          try {
-            $file = $request->files->get('primaryImageCarInput');
-            if ($file && $file instanceof UploadedFile) {
-              $filename = $this->saveImage($file, $this->getParameter('images_directory'));
-              $picture = new Pictures();
-              $picture->setPicture($filename);
-              $picture->setIsPrimary(true);
-              $car->addPicture($picture);
-            }
-  
-            $files = $request->files->get('imagesCarInput');
-            if ($files && is_array($files)) {
-              foreach ($files as $file) {
-                if ($file instanceof UploadedFile) {
-                  $filename = $this->saveImage($file, $this->getParameter('images_directory'));
-                  $picture = new Pictures();
-                  $picture->setPicture($filename);
-                  $picture->setIsPrimary(false);
-                  $car->addPicture($picture);
-                }
-              }
-            }
-          } catch (\Exception $e) {
-            $this->addFlash('error', 'Erreur lors de l\'enregistrement de l\'image : ' . $e->getMessage());
-          }
-  
+          
           $errors = $validator->validate($car);
           if (count($errors) > 0) {
             foreach ($errors as $error) {
               $this->addFlash('error', $error->getMessage());
             }
           } else {
+            try {
+              $file = $request->files->get('primaryImageCarInput');
+              if ($file && $file instanceof UploadedFile) {
+                $filename = $this->saveImage($file);
+                $picture = new Pictures();
+                $picture->setPicture($filename);
+                $picture->setIsPrimary(true);
+                $car->addPicture($picture);
+              }
+    
+              $files = $request->files->get('imagesCarInput');
+              if ($files && is_array($files)) {
+                foreach ($files as $file) {
+                  if ($file instanceof UploadedFile) {
+                    $filename = $this->saveImage($file);
+                    $picture = new Pictures();
+                    $picture->setPicture($filename);
+                    $picture->setIsPrimary(false);
+                    $car->addPicture($picture);
+                  }
+                }
+              }
+            } catch (\Exception $e) {
+              $this->addFlash('error', 'Erreur lors de l\'enregistrement de l\'image : ' . $e->getMessage());
+            }
             $manager->persist($car);
             foreach ($car->getPictures() as $picture) {
               $manager->persist($picture);
@@ -375,7 +374,7 @@ class CarController extends AbstractController
   
       $file = $request->files->get('primaryImageCarInput');
       if ($file && $file instanceof UploadedFile) {
-        $filename = $this->saveImage($file, $this->getParameter('images_directory'));
+        $filename = $this->saveImage($file);
         $picture = new Pictures();
         $picture->setPicture($filename);
         $picture->setIsPrimary(true);
@@ -386,7 +385,7 @@ class CarController extends AbstractController
       if ($files && is_array($files)) {
         foreach ($files as $file) {
           if ($file instanceof UploadedFile) {
-            $filename = $this->saveImage($file, $this->getParameter('images_directory'));
+            $filename = $this->saveImage($file);
             $picture = new Pictures();
             $picture->setPicture($filename);
             $picture->setIsPrimary(false);
@@ -424,32 +423,22 @@ class CarController extends AbstractController
   #[Route('/user/voitures/delete/{id}', name: 'voitures.delete', methods: ['POST'])]
   public function delete(string $id, EntityManagerInterface $manager): Response
   {
-  $car = $manager->getRepository(Cars::class)->find($id);
-
-  if ($car) {
-    foreach ($car->getPictures() as $picture) {
-    $filePath = $this->getParameter('images_directory') . '/' . $picture->getPicture();
-
-    if (file_exists($filePath)) {
-      try {
-      unlink($filePath);
-      } catch (\Exception $e) {
-      $this->addFlash('error', "Erreur lors de la suppression du fichier image : " . $e->getMessage());
-      return $this->redirectToRoute('voitures.admin.manage');
+    $car = $manager->getRepository(Cars::class)->find($id);
+  
+    if ($car) {
+      foreach ($car->getPictures() as $picture) {
+        $this->deleteImage($picture->getPicture());
+        $manager->remove($picture);
       }
+  
+      $manager->remove($car);
+      $manager->flush();
+  
+      $this->addFlash('success', 'La voiture a été supprimée avec succès.');
     } else {
-      $this->addFlash('warning', "Le fichier image n'existe pas ou a déjà été supprimé : " . $filePath);
+      $this->addFlash('error', 'Voiture introuvable.');
     }
-    }
-
-    $manager->remove($car);
-    $manager->flush();
-
-    $this->addFlash('success', 'La voiture a été supprimée avec succès.');
-  } else {
-    $this->addFlash('error', 'Voiture introuvable.');
-  }
-
+  
     return $this->redirectToRoute('voitures.admin.manage');
   }
 }

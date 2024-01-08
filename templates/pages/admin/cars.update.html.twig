@@ -73,8 +73,8 @@
             <input type="file" name="primaryImageCarInput" id="primaryImageCarInput" style="display: none;">
             <div id="imageCarPreview" class="images-preview">
               {% for picture in car.pictures|filter(picture => picture.isPrimary) %}
-                <div class="img-container">
-                  <img src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" class="car-image-primary">
+                <div class="img-container" id="imageCarPreview">
+                  <img src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" class="car-image-primary img-preview">
                   <button class="cross-btn" data-image-id="{{ picture.id }}">❌</button>
                 </div>
               {% endfor %}
@@ -91,8 +91,8 @@
             <input type="file" name="imagesCarInput[]" id="imagesCarInput" multiple style="display: none;">
             <div id="imagesCarPreview" class="images-preview">
                 {% for picture in car.pictures|filter(picture => not picture.isPrimary) %}
-                  <div class="img-container">
-                    <img src="{{ asset('assets/img/uploads/' ~ picture.picture) }}" class="car-image-secondary">
+                  <div class="img-container" id="imagesCarPreview">
+                    <img src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ picture.picture }}" class="car-image-secondary img-preview">
                     <button class="cross-btn" data-image-id="{{ picture.id }}">❌</button>
                   </div>
                 {% endfor %}

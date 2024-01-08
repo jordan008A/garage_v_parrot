@@ -40,11 +40,11 @@
 }
 
 #imagesCarPreview img {
-  width: 180px;
-  height: 126px;
+  width: 170px;
+  height: 119px;
   object-fit: cover;
   border-radius: 8px;
-  margin-top: 20px;
+  margin: 20px 5px 0 5px;
 }
 
 .cross-btn {

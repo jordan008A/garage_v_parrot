@@ -27,7 +27,6 @@ class Services
     #[ORM\Column(length: 400)]
     private ?string $text;
 
-    #[Assert\NotBlank()]
     #[ORM\Column(length: 255)]
     private ?string $picture;
 

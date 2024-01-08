@@ -50,7 +50,7 @@
       {% for service in services %}
         <tr>
           <td>{{ service.title }}</td>
-          <td><img class="service-image" src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}"></td>
+          <td><img class="service-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ service.picture }}" alt="{{ service.title }}"></td>
           <td>{{ service.text }}</td>
           <td>
             <form action="{{ path('services.delete', {'id': service.id}) }}" method="post">
@@ -71,7 +71,7 @@
           </div>
           <div class="d-flex flex-colum justify-content-around">
             <div class="mt-2 me-2">
-              <img class="service-image" src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="{{ service.title }}">
+              <img class="service-image" src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ service.picture }}" alt="{{ service.title }}">
             </div>
             <div class="d-flex flex-column justify-content-center">
               <div class="mb-2">

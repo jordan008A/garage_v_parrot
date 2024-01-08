@@ -22,7 +22,7 @@
         {% if service.picture %}
           <p>Image Actuelle :</p>
           <div class="current-image mb-3">
-          <img src="{{ asset('assets/img/uploads/' ~ service.picture) }}" alt="Image actuelle">
+          <img src="https://garage-v-parrot.s3.eu-west-3.amazonaws.com/img/uploads/{{ service.picture }}" alt="Image actuelle">
           </div>
         {% else %}
           <p>Pas d'image actuellement.</p>
