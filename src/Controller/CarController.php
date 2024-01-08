@@ -105,12 +105,12 @@ class CarController extends AbstractController
 
     $footerData = $this->footerService->getFooterData();
 
-    $yearMin = $request->query->get('yearMin');
-    $yearMax = $request->query->get('yearMax');
-    $kmMin = $request->query->get('kmMin');
-    $kmMax = $request->query->get('kmMax');
-    $priceMin = $request->query->get('priceMin');
-    $priceMax = $request->query->get('priceMax');
+    $yearMin = $request->query->get('yearMin') !== null ? (int) $request->query->get('yearMin') : null;
+    $yearMax = $request->query->get('yearMax') !== null ? (int) $request->query->get('yearMax') : null;
+    $kmMin = $request->query->get('kmMin') !== null ? (int) $request->query->get('kmMin') : null;
+    $kmMax = $request->query->get('kmMax') !== null ? (int) $request->query->get('kmMax') : null;
+    $priceMin = $request->query->get('priceMin') !== null ? (int) $request->query->get('priceMin') : null;
+    $priceMax = $request->query->get('priceMax') !== null ? (int) $request->query->get('priceMax') : null;
 
     $cars = $carsRepository->findFilteredCars($yearMin, $yearMax, $kmMin, $kmMax, $priceMin, $priceMax);
 
