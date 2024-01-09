@@ -18,7 +18,7 @@ class MailerService
     public function sendResetPasswordEmail(Users $user, string $resetToken): void
     {
         $email = (new Email())
-            ->from('garageparrot43@outlook.fr')
+            ->from('jordancros@hotmail.fr')
             ->to($user->getEmail())
             ->subject('Réinitialisation de votre mot de passe')
             ->html("
