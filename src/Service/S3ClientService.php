@@ -16,12 +16,12 @@ class S3ClientService
       'version'     => 'latest',
       'region'      => 'eu-west-3',
       'credentials' => [
-        'key'    => $_ENV['AWS_ACCESS_KEY_ID'],
-        'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'],
+        'key'    => $_SERVER['AWS_ACCESS_KEY_ID'],
+        'secret' => $_SERVER['AWS_SECRET_ACCESS_KEY'],
       ],
     ]);
 
-    $this->bucketName = $_ENV['AWS_BUCKET'];
+    $this->bucketName = $_SERVER['AWS_BUCKET'];
   }
 
   public function uploadFile($filePath, $keyName)

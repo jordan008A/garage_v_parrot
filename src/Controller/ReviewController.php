@@ -131,7 +131,7 @@ class ReviewController extends AbstractController
     $review->setFirstname($data['firstname']);
     $review->setText($data['comment']);
     $review->setRate(intval($data['ratingValue']));
-    $review->setApproved(false);
+    $review->setApproved(true);
 
       if (!empty($data['subject']) && isset($data['_csrf_token'])){
         $csrfToken = new CsrfToken('admin-review-form', $data['_csrf_token']);

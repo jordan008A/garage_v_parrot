@@ -74,7 +74,7 @@
                   <p class="mx-2 my-auto">{{approvedReview.service.title}}</p>
                   <div>
                     <form action="{{ path('reviews.delete', {'id': approvedReview.id}) }}" method="post">
-                      <button type="submit" class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                      <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
                     </form>
                   </div>
                 </div>
@@ -120,7 +120,7 @@
                       <button type="submit" class="btn-validate-review btn btn-sm"><i class="fa-regular fa-circle-check"></i></button>
                     </form>
                     <form action="{{ path('reviews.delete', {'id': unapprovedReview.id}) }}" method="post">
-                      <button type="submit" class="btn-delete-review btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                      <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
                     </form>
                   </div>
                 </div>
@@ -147,4 +147,5 @@
 
   <script src="{{ asset('assets/javascript/limitCharacters175.js') }}"></script>
   <script src="{{ asset('assets/javascript/saveStarsValue.js') }}"></script>
+  <script src="{{ asset('assets/javascript/deleteConfirm.js') }}"></script>
 {% endblock %}

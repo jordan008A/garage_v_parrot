@@ -1,7 +1,7 @@
 // Listen for the DOMContentLoaded event to ensure the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Select all elements with the class 'btn-delete'
-    const deleteButtons = document.querySelectorAll('.btn-delete');
+    const deleteButtons = document.querySelectorAll('.delete');
   
     // Iterate over each button and attach a click event listener
     deleteButtons.forEach(function(button) {

@@ -63,7 +63,7 @@
           <td class="d-flex">
            {% if not user.isAdmin %}
               <form action="{{ path('users.delete', {'id': user.id}) }}" method="post">
-                <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                <button type="submit" class="btn-delete delete"><i class="fas fa-trash-alt"></i></button>
               </form>
             {% endif %}
             <button class="btn-edit" onclick="location.href='{{ path('users.update', {'id': user.id}) }}'"><i class="fas fa-edit"></i></button>
@@ -94,7 +94,7 @@
               <div>
                 {% if not user.isAdmin %}
                   <form action="{{ path('users.delete', {'id': user.id}) }}" method="post">
-                    <button type="submit" class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                    <button type="submit" class="btn-delete btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
                   </form>
                 {% endif %}
               </div>

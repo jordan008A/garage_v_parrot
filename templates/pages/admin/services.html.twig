@@ -54,7 +54,7 @@
           <td>{{ service.text }}</td>
           <td>
             <form action="{{ path('services.delete', {'id': service.id}) }}" method="post">
-              <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+              <button type="submit" class="btn-delete delete"><i class="fas fa-trash-alt"></i></button>
             </form>
             <button class="btn-edit" onclick="location.href='{{ path('services.edit', {'id': service.id}) }}'"><i class="fas fa-edit"></i></button>
           </td>
@@ -79,7 +79,7 @@
               </div>
               <div>
                 <form action="{{ path('services.delete', {'id': service.id}) }}" method="post">
-                  <button type="submit" class="btn-delete btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                  <button type="submit" class="btn-delete btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
                 </form>
               </div>
             </div>
