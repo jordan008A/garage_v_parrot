@@ -22,7 +22,6 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
 - Clonage du Répertoire GitHub :
   ```
   git clone https://github.com/jordan008A/garage_v_parrot.git 
-  cd garage_v_parrot
   ```
 - Accès au Répertoire du Projet :
   ```
