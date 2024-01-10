@@ -12,21 +12,33 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
 ## Prérequis avant installation
 - Installation de XAMPP et démarrage des modules Apache & MySQL.
 - Installation de PHP.
+- Installation de Symfony CLI.
 - Installation de Composer qui est un gestionnaire de dépendances pour PHP.
 - Mise en place d'un gestionnaire de base de données comme PhpMyAdmin.
+- Mise en place du service Cloud Amazon S3.
+- Avoir accès à une passerelle SMTP vers une boîte mail (Pour la réinitialisation des mots de passes).
 
 ## Pour éxécuter le site en local
 - Clonage du Répertoire GitHub :
   ```
-  git clone https://github.com/jordan008A/garage_v_parrot.git cd garage_v_parrot
+  git clone https://github.com/jordan008A/garage_v_parrot.git 
+  cd garage_v_parrot
   ```
-  - Accès au Répertoire du Projet :
+- Accès au Répertoire du Projet :
   ```
   cd garage_v_parrot
   ```
-- Modifiez le fichier .env ou .env.local avec vos informations de base de données dans DATABASE_URL.
+- Renommez le fichier .env.example en .env
 
-- Installation des dépendances
+- Editez le fichier .env pour y ajouter les valeurs spécifiques à votre environnement
+
+- Copiez le dossier public/assets/img sur votre bucket Amazon S3
+
+- Modifier l'adresse from() dans src/Service/MailerService.php :
+  ```
+  ->from('VotreAdresseMail')
+  ```
+- Installation des dépendances :
   ```
   composer install
    ```
@@ -34,7 +46,11 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
   ```
   php bin/console doctrine:database:create
   ```
-- Application des Migrations : 
+- Création d'une migration :
+  ```
+  php bin/console make:migration
+  ```
+- Application de la migration : 
   ```
   php bin/console doctrine:migrations:migrate
   ```
@@ -58,8 +74,9 @@ https://trello.com/b/bu46I5jQ/garage-vparrot
 - languages => PHP, Javascript et CSS
 - Framework => Symfony
 - ORM => doctrine
-- moteur de template HTML => Twig
+- Moteur de template HTML => Twig
 - Style => Boostrap
-- gestionnaires de dépendance => composer
+- Gestionnaires de dépendance => composer
 - Système de gestion de base de données => Mysql
-- server web => Apache2
+- Serveur web => Apache2
+- Service Cloud => Amazon S3
