@@ -54,85 +54,86 @@
   </div>
   
   <div class="container mt-5">
-  <h1 class="h1">Avis postés</h1>
-  <div id="postedReviewCarousel" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-inner">
-      {% set hasPostedReviews = false %}
-      {% for approvedReview in approvedReviews %}
-          {% set hasPostedReviews = true %}
-          <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-              <div class="carousel-content custom-review-carousel">
-                <div class="person-info">
-                  <p>{{ approvedReview.firstname }}.{{ approvedReview.lastname|first|upper }}</p>
-                  <div class="stars">
-                    {% for i in 1..approvedReview.rate %}
-                      <span class="rate">&#9733;</span>
-                    {% endfor %}
+    <h1 class="h1">Avis postés</h1>
+    <div id="postedReviewCarousel" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        {% set hasPostedReviews = false %}
+        {% for approvedReview in approvedReviews %}
+            {% set hasPostedReviews = true %}
+            <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                <div class="carousel-content custom-review-carousel">
+                  <div class="person-info">
+                    <p>{{ approvedReview.firstname }}.{{ approvedReview.lastname|first|upper }}</p>
+                    <div class="stars">
+                      {% for i in 1..approvedReview.rate %}
+                        <span class="rate">&#9733;</span>
+                      {% endfor %}
+                    </div>
                   </div>
-                </div>
-                <div class="subject d-flex flex-row justify-content-between">
-                  <p class="mx-2 my-auto">{{approvedReview.service.title}}</p>
-                  <div>
-                    <form action="{{ path('reviews.delete', {'id': approvedReview.id}) }}" method="post">
-                      <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
-                    </form>
+                  <div class="subject d-flex flex-row justify-content-between">
+                    <p class="mx-2 my-auto">{{approvedReview.service.title}}</p>
+                    <div>
+                      <form action="{{ path('reviews.delete', {'id': approvedReview.id}) }}" method="post">
+                        <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
+                      </form>
+                    </div>
                   </div>
-                </div>
-                <div class="text">
-                  <p>"{{approvedReview.text}}"</p>
+                  <div class="text">
+                    <p>"{{approvedReview.text}}"</p>
+                  </div>
                 </div>
               </div>
-            </div>
-      {% endfor %}
-      {% if not hasPostedReviews %}
-        <h5 class="text-center">Aucun avis posté</h5>
-      {% endif %}
+        {% endfor %}
+        {% if not hasPostedReviews %}
+          <h5 class="text-center">Aucun avis posté</h5>
+        {% endif %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon button-s" aria-hidden="true"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>
-        <span class="visually-hidden">Précédent</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#postedReviewCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon button-s" aria-hidden="true"></span>
-        <span class="visually-hidden">Suivant</span>
-      </button>
+      <h1 class="h1">Avis à valider</h1>
     </div>
-    <h1 class="h1">Avis à valider</h1>
-  <div id="validateReviewCarousel" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-inner">
-      {% set hasValidatedReviews = false %}
-      {% for unapprovedReview in unapprovedReviews %}
-          {% set hasValidatedReviews = true %}
-          <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-              <div class="carousel-content custom-review-carousel">
-                <div class="person-info">
-                  <p>{{ unapprovedReview.firstname }}.{{ unapprovedReview.lastname|first|upper }}</p>
-                  <div class="stars">
-                    {% for i in 1..unapprovedReview.rate %}
-                      <span class="rate">&#9733;</span>
-                    {% endfor %}
-                  </div>
-                </div>
-                <div class="subject d-flex flex-row justify-content-between">
-                  <p class="mx-2 my-auto">{{unapprovedReview.service.title}}</p>
-                  <div>
-                    <form action="{{ path('reviews.validate', {'id': unapprovedReview.id}) }}" method="post">
-                      <button type="submit" class="btn-validate-review btn btn-sm"><i class="fa-regular fa-circle-check"></i></button>
-                    </form>
-                    <form action="{{ path('reviews.delete', {'id': unapprovedReview.id}) }}" method="post">
-                      <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                  </div>
-                </div>
-                <div class="text">
-                  <p>"{{unapprovedReview.text}}"</p>
-                </div>
+    <div id="validateReviewCarousel" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        {% set hasValidatedReviews = false %}
+        {% for unapprovedReview in unapprovedReviews %}
+        {% set hasValidatedReviews = true %}
+        <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+          <div class="carousel-content custom-review-carousel">
+            <div class="person-info">
+              <p>{{ unapprovedReview.firstname }}.{{ unapprovedReview.lastname|first|upper }}</p>
+              <div class="stars">
+                {% for i in 1..unapprovedReview.rate %}
+                  <span class="rate">&#9733;</span>
+                {% endfor %}
               </div>
             </div>
-      {% endfor %}
-      {% if not hasValidatedReviews %}
-        <h5 class="text-center">Aucun avis à valider.</h5>
-      {% endif %}
+            <div class="subject d-flex flex-row justify-content-between">
+              <p class="mx-2 my-auto">{{unapprovedReview.service.title}}</p>
+              <div>
+                <form action="{{ path('reviews.validate', {'id': unapprovedReview.id}) }}" method="post">
+                  <button type="submit" class="btn-validate-review btn btn-sm"><i class="fa-regular fa-circle-check"></i></button>
+                </form>
+                <form action="{{ path('reviews.delete', {'id': unapprovedReview.id}) }}" method="post">
+                  <button type="submit" class="btn-delete-review btn btn-sm delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              </div>
+            </div>
+            <div class="text">
+              <p>"{{unapprovedReview.text}}"</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% if not hasValidatedReviews %}
+          <h5 class="text-center">Aucun avis à valider.</h5>
+        {% endif %}
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#validateReviewCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon button-s" aria-hidden="true"></span>

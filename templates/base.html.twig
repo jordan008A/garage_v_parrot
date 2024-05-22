@@ -11,13 +11,15 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     {% endblock %}
   </head>
-  <body>
 
-    {% block header %}
-      {% include "partials/_header.html.twig" %}
-    {% endblock %}
-    
-    {% block body %}{% endblock %}
+  <body class="d-flex flex-column vh-100">
+    <div class="container-fluid flex-grow-1">
+      {% block header %}
+        {% include "partials/_header.html.twig" %}
+      {% endblock %}
+      
+      {% block body %}{% endblock %}
+    </div>
 
     {% block footer %}
       {% include 'partials/_footer.html.twig' with {'schedules': footerData} %}

@@ -24,7 +24,7 @@ class Services
     private ?string $title;
 
     #[Assert\NotBlank()]
-    #[ORM\Column(length: 400)]
+    #[ORM\Column(length: 500)]
     private ?string $text;
 
     #[ORM\Column(length: 255)]
